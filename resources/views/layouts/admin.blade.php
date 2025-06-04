@@ -51,10 +51,12 @@
                 </a>
                 <div class="navbar-nav w-100">
                     <a href="{{ url('/admin') }}" class="nav-item nav-link {{ ($title === "Beranda" ? 'active' : '')}}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="{{ url('/admin/datacreate') }}" class="nav-item nav-link {{ ($title === "Data Pasien" ? 'active' : '')}}"><i class="fa fa-table me-2"></i>Tambah Data Pasien</a>
-                    <a href="{{ url('/admin/laporan') }}" class="nav-item nav-link {{ ($title === "Data Pengunjung" ? 'active' : '')}}"><i class="fa fa-chart-bar me-2"></i>Data Pengunjung</a>
-                    <a href="{{ url('/admin/poli') }}" class="nav-item nav-link {{ ($title === "Pelayanan Poli" ? 'active' : '')}}"><i class="fa fa-th me-2"></i>Pelayanan Poli</a>
-                    <a href="{{ url('/admin/user') }}" class="nav-item nav-link {{ ($title === "Daftar Pengguna" ? 'active' : '')}}"><i class="fa fa-user me-2"></i>Daftar Pengguna</a>
+                    <a href="{{ url('/admin/datacreate') }}" class="nav-item nav-link {{ ($title === "Data Pasien" ? 'active' : '')}}"><i class="fa fa-table me-2"></i>Informasi</a>
+                    <a href="{{ url('/admin/laporan') }}" class="nav-item nav-link {{ ($title === "Data Pengunjung" ? 'active' : '')}}"><i class="fa fa-chart-bar me-2"></i>Artikel</a>
+                    <a href="{{ url('/admin/poli') }}" class="nav-item nav-link {{ ($title === "Pelayanan Poli" ? 'active' : '')}}"><i class="fa fa-th me-2"></i>Jadwal Pelayanan</a>
+                    <a href="{{ url('/admin/user') }}" class="nav-item nav-link {{ ($title === "Daftar Layanan" ? 'active' : '')}}"><i class="fa fa-user me-2"></i>layanan</a>
+                    <a href="{{ url('/admin/user') }}" class="nav-item nav-link {{ ($title === "Hasil Konsultasi" ? 'active' : '')}}"><i class="fa fa-user me-2"></i>Hasil Konsultasi</a>
+                    <a href="{{ url('/admin/user') }}" class="nav-item nav-link {{ ($title === "Daftar Layanan" ? 'active' : '')}}"><i class="fa fa-user me-2"></i>Daftar Admin</a>
                 </div>
             </nav>
         </div>

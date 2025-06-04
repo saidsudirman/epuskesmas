@@ -19,17 +19,17 @@
             <table class="table">
                 <thead>
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">NAMA POLI</th>
-                      <th scope="col">AKSI</th>
-                  </tr>
-              </thead>
-              <tbody>
+                    <th scope="col">NO</th>
+                    <th scope="col">NAMA POLI</th>
+                    <th scope="col">AKSI</th>
+                    </tr>
+                </thead>
+            <tbody>
                 @foreach($poli as $d)
                 <tr>
-                  <td>{{ $loop->iteration }}</td>
-                  <td>{{ $d->nama }}</td>
-                  <td>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $d->nama }}</td>
+                <td>
                     <form action="{{ route('poli.delete', $d->id) }}" method="POST">
                         <a href="{{ route('poli.edit', $d->id) }}" class="btn btn-sm btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
                         @csrf
