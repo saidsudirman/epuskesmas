@@ -12,9 +12,9 @@
                     <table class="table">
                         <thead>
                             <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">NIK</th>
-                              <th scope="col">NAMA</th>
+                            <th scope="col">#</th>
+                            <th scope="col">NIK</th>
+                            <th scope="col">NAMA</th>
                               <th scope="col">ALAMAT</th>
                               <th scope="col">TELEPON</th>
                               <th scope="col">JENIS POLI</th>

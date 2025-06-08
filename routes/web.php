@@ -3,51 +3,55 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengunjungController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ArtikelController;
 
 
 Route::get('/', [PengunjungController::class, 'index']);
 
-// PENGUNJUNG
+
 Route::get('/pendaftaran', [PengunjungController::class, 'create'])->name('pengunjung.create');
 Route::post('/pendaftaran', [PengunjungController::class, 'store'])->name('pengunjung.store');
+
 Route::get('/about', [PengunjungController::class, 'about']);
 Route::get('/service', [PengunjungController::class, 'service']);
 Route::get('/dokter', [PengunjungController::class, 'dokter']);
 Route::get('/contact', [PengunjungController::class, 'contact']);
 
-// ADMIN
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    Route::get('/admin/datacreate', [AdminController::class, 'datacreate'])->name('data.create');
-    Route::post('/admin/datacreate', [AdminController::class, 'datastore'])->name('data.store');
-    Route::get('/admin/{id}/edit', [AdminController::class, 'dataedit'])->name('data.edit');
-    Route::put('/admin/{id}', [AdminController::class, 'dataupdate'])->name('data.update');
-    Route::delete('/admin/{id}', [AdminController::class, 'datadestroy'])->name('data.destroy');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // LAPORAN
-    Route::get('/admin/laporan', [AdminController::class, 'laporan'])->name('admin.laporan');
-    Route::get('/admin/laporan/{tgl_kunjung}', [AdminController::class, 'tgldetail'])->name('admin.tgldetail');
-    Route::get('/laporan/poli/{id}', [AdminController::class, 'polidetail']);
+    Route::prefix('admin')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('admin.index');
+        Route::get('/create', [UserController::class, 'create'])->name('admin.create');
+        Route::post('/', [UserController::class, 'store'])->name('admin.store');
+        Route::get('/{id}/edit', [UserController::class, 'edit'])->name('admin.edit');
+        Route::put('/{id}', [UserController::class, 'update'])->name('admin.update');
+        Route::delete('/{id}', [UserController::class, 'destroy'])->name('admin.destroy');
 
-    // LAYANAN POLI
-    Route::get('/admin/poli', [AdminController::class, 'poliindex'])->name('poli.index');
-    Route::post('/admin/poli', [AdminController::class, 'polistore'])->name('poli.store');
-    Route::get('/admin/poli/{id}/edit', [AdminController::class, 'poliedit'])->name('poli.edit');
-    Route::put('/admin/poli/{id}', [AdminController::class, 'poliupdate'])->name('poli.update');
-    Route::delete('/admin/poli/{id}', [AdminController::class, 'polidelete'])->name('poli.delete');
+        Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi.index');
+        Route::get('/informasi/create', [InformasiController::class, 'create'])->name('informasi.create');
+        Route::post('/informasi', [InformasiController::class, 'store'])->name('informasi.store');
+        Route::get('/informasi/{id}/edit', [InformasiController::class, 'edit'])->name('informasi.edit');
+        Route::put('/informasi/{id}', [InformasiController::class, 'update'])->name('informasi.update');
+        Route::delete('/informasi/{id}', [InformasiController::class, 'destroy'])->name('informasi.destroy');
 
-    // USER
-    Route::get('/admin/user', [AdminController::class, 'userindex'])->name('user.index');
-    Route::post('/admin/user', [AdminController::class, 'userstore'])->name('user.store');
-    Route::get('/admin/user/{id}/edit', [AdminController::class, 'useredit'])->name('user.edit');
-    Route::put('/admin/user/{id}', [AdminController::class, 'userupdate'])->name('user.update');
-    Route::delete('/admin/user/{id}', [AdminController::class, 'userdelete'])->name('user.delete');
+        Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
+        Route::get('/artikel/create', [ArtikelController::class, 'create'])->name('artikel.create');
+        Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store');
+        Route::get('/artikel/{id}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit');
+        Route::put('/artikel/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
+        Route::delete('/artikel/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
 
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+        // Route::get('/laporan', [AdminController::class, 'laporan'])->name('admin.laporan');
+        // Route::get('/laporan/{tgl_kunjung}', [AdminController::class, 'tgldetail'])->name('admin.tgldetail');
+        // Route::get('/poli', [AdminController::class, 'poliindex'])->name('poli.index');
+        // Route::get('/user', [AdminController::class, 'userindex'])->name('user.index');
+    });
 });
-
-// LOGIN
-Route::get('login', [LoginController::class, 'index'])->name('login');
-Route::post('login', [LoginController::class, 'login']);
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');

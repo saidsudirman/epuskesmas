@@ -19,23 +19,23 @@
             <table class="table">
                 <thead>
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">NAMA ADMIN</th>
-                      <th scope="col">EMAIL</th>
-                      <th scope="col">PASSWORD</th>
-                      <th scope="col">AKSI</th>
-                  </tr>
-              </thead>
-              <tbody>
-                @foreach($admin as $d)
+                        <th scope="col">#</th>
+                        <th scope="col">NAMA ADMIN</th>
+                        <th scope="col">EMAIL</th>
+                        <th scope="col">PASSWORD</th>
+                        <th scope="col">AKSI</th>
+                    </tr>
+            </thead>
+            <tbody>
+                @foreach($users as $d)
                 <tr>
-                  <td>{{ $loop->iteration }}</td>
-                  <td>{{ $d->name }}</td>
-                  <td>{{ $d->email }}</td>
-                  <td>{{ $d->password }}</td>
-                  <td>
-                    <form action="{{ route('user.delete', $d->id) }}" method="POST">
-                        <a href="{{ route('user.edit', $d->id) }}" class="btn btn-sm btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $d->name }}</td>
+                <td>{{ $d->email }}</td>
+                <td>{{ $d->password }}</td>
+                <td>
+                    <form action="{{ route('admin.destroy', $d->id) }}" method="POST">
+                        <a href="{{ route('admin.edit', $d->id) }}" class="btn btn-sm btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Konfirmasi untuk Hapus Data')" title="Hapus Data"><i class="fa fa-trash"></i></button>
@@ -56,7 +56,7 @@
         <div class="bg-light rounded h-100 p-4">
             <h6 class="mb-4">TAMBAH ADMIN</h6>
             {{-- FORM TAMBAH --}}
-            <form action="{{ route('user.store') }}" method="POST">
+            <form action="{{ route('admin.store') }}" method="POST">
                 @csrf
                 <div class="row g-3">
                     <div class="col-8">

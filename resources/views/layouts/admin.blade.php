@@ -50,9 +50,9 @@
                     <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>E-PUSKESMAS</h3>
                 </a>
                 <div class="navbar-nav w-100">
-                    <a href="{{ url('/admin') }}" class="nav-item nav-link {{ ($title === "Beranda" ? 'active' : '')}}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="{{ url('/admin/datacreate') }}" class="nav-item nav-link {{ ($title === "Data Pasien" ? 'active' : '')}}"><i class="fa fa-table me-2"></i>Informasi</a>
-                    <a href="{{ url('/admin/laporan') }}" class="nav-item nav-link {{ ($title === "Data Pengunjung" ? 'active' : '')}}"><i class="fa fa-chart-bar me-2"></i>Artikel</a>
+                    <a href="{{ url('/dashboard') }}" class="nav-item nav-link {{ ($title === "dashboard" ? 'active' : '')}}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="{{ url('/informasi') }}" class="nav-item nav-link {{ ($title === "Data Pasien" ? 'active' : '')}}"><i class="fa fa-table me-2"></i>Informasi</a>
+                    <a href="{{ url('/artikel') }}" class="nav-item nav-link {{ ($title === "Artikel Puskesmas" ? 'active' : '')}}"><i class="fa fa-chart-bar me-2"></i>Artikel</a>
                     <a href="{{ url('/admin/poli') }}" class="nav-item nav-link {{ ($title === "Pelayanan Poli" ? 'active' : '')}}"><i class="fa fa-th me-2"></i>Jadwal Pelayanan</a>
                     <a href="{{ url('/admin/user') }}" class="nav-item nav-link {{ ($title === "Daftar Layanan" ? 'active' : '')}}"><i class="fa fa-user me-2"></i>layanan</a>
                     <a href="{{ url('/admin/user') }}" class="nav-item nav-link {{ ($title === "Hasil Konsultasi" ? 'active' : '')}}"><i class="fa fa-user me-2"></i>Hasil Konsultasi</a>
@@ -77,10 +77,10 @@
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="{{ asset('dashboard/img/user.png') }}" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">Hi, {{ $user->name }}</span>
+                            <span class="d-none d-lg-inline-flex">Hi, {{  Auth::user()->name  }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="{{ route('user.edit', $user->id) }}" class="dropdown-item">My Profile</a>
+                            <a href="{{ route('admin.edit',  Auth::user()->id ) }}" class="dropdown-item">My Profile</a>
                             <a href="{{ url('/logout') }}" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
