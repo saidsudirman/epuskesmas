@@ -22,13 +22,13 @@ Route::get('/contact', [PengunjungController::class, 'contact']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
+    
     Route::prefix('admin')->group(function () {
-        Route::get('/', [UserController::class, 'index'])->name('admin.index');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/admin', [UserController::class, 'index'])->name('admin.index');
         Route::get('/create', [UserController::class, 'create'])->name('admin.create');
         Route::post('/', [UserController::class, 'store'])->name('admin.store');
         Route::get('/{id}/edit', [UserController::class, 'edit'])->name('admin.edit');

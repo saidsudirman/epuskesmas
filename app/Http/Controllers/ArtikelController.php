@@ -11,9 +11,9 @@ class ArtikelController extends Controller
 {
     public function index()
     {
-        $artikels = Post::all();
+        $datas = Post::all();
         $title = 'Daftar Artikel'; 
-        return view('pages.artikel.index', compact('artikels, title'));
+        return view('pages.artikel.index', compact('datas, title'));
     }
 
     public function create()

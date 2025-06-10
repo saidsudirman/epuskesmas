@@ -21,7 +21,7 @@ class UserController extends Controller
         $request->validate([
             'name'     => 'required|string|max:255',
             'email'    => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:6',
         ]);
 
         User::create([
@@ -30,7 +30,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan.');
+        return redirect()->route('admin.index')->with('success', 'User berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -54,14 +54,14 @@ class UserController extends Controller
 
         if ($request->filled('password')) {
             $request->validate([
-                'password' => 'min:6|confirmed',
+                'password' => 'min:6',
             ]);
             $user->password = Hash::make($request->password);
         }
 
         $user->save();
 
-        return redirect()->route('pages.admin.index')->with('success', 'User berhasil diperbarui.');
+        return redirect()->route('admin.index')->with('success', 'User berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -69,6 +69,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('pages.admin.index')->with('success', 'User berhasil dihapus.');
+        return redirect()->route('admin.index')->with('success', 'User berhasil dihapus.');
     }
 }

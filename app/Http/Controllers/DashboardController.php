@@ -13,9 +13,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $type_menu = 'dashboard';
-        $title = 'Dashboard'; 
-        return view('pages.dashboard.index', compact('type_menu', 'title'));
+        $title = 'dashboard';
+        return view('pages.dashboard.index', compact('title'));
+
     }
 
     

@@ -17,13 +17,13 @@
         <div class="bg-light rounded h-100 p-4">
             <h6 class="mb-4">EDIT DATA ADMIN</h6>
             {{-- FORM TAMBAH --}}
-            <form action="{{ route('user.update', $admin->id) }}" method="POST">
+            <form action="{{ route('admin.update', $user->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="row g-2">
                     <div class="col-8">
                         <div class="form-floating">
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama Admin" value="{{ $admin->name }}">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama Admin" value="{{ $user->name }}">
                             <label for="name">Nama Admin</label>
                             @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-8">
                         <div class="form-floating">
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="email@example.com" value="{{ $admin->email }}">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="email@example.com" value="{{ $user->email }}">
                             <label for="email">Email</label>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-8">
                         <div class="form-floating">
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Password" value="{{ $admin->password }}">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Password" value="{{ $user->password }}">
                             <label for="password">Password</label>
                             @error('password')
                             <span class="invalid-feedback" role="alert">

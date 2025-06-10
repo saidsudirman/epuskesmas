@@ -1,77 +1,72 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Informasi;
+use Illuminate\Http\Request;
 
 class InformasiController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        // Fitur Search
-        $query = Informasi::query();
-
-        if ($request->has('search')) {
-            $search = $request->search;
-            $query->where('jam_operasional', 'like', "%$search%")
-                ->orWhere('visi', 'like', "%$search%")
-                ->orWhere('misi', 'like', "%$search%")
-                ->orWhere('layanan', 'like', "%$search%")
-                ->orWhere('pengumuman', 'like', "%$search%");
-        }
-
-        $informasi = $query->latest()->paginate(10);
-        $title = 'Daftar Informasi'; 
-        return view('pages.informasi.index', compact('informasi'));
+        $datas = Informasi::latest()->get(); // Tambahkan latest() untuk urutan terbaru
+        $title = 'Informasi';
+        return view('pages.informasi.index', compact('datas', 'title'));
     }
 
     public function create()
     {
-        return view('pages.admin.informasi.create');
+        $title = 'Tambah Informasi'; // Judul lebih deskriptif
+        return view('pages.informasi.create', compact('title'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'jam_operasional' => 'required',
-            'visi' => 'required',
-            'misi' => 'required',
-            'layanan' => 'required',
-            'pengumuman' => 'required',
+        $validatedData = $request->validate([
+            'jam_operasional' => 'required|string|max:255',
+            'visi' => 'required|string',
+            'misi' => 'required|string',
+            'layanan' => 'required|string',
+            'pengumuman' => 'nullable|string',
         ]);
 
-        Informasi::create($request->all());
-        return redirect()->route('admin.informasi.index')->with('success', 'Informasi berhasil ditambahkan.');
+        // Simpan data sekaligus
+        Informasi::create($validatedData);
+
+        return redirect()->route('informasi.index')
+                        ->with('success', 'Informasi berhasil ditambahkan');
     }
 
     public function edit($id)
     {
-        $informasi = Informasi::findOrFail($id);
-        $title = 'Edit Informasi'; 
-        return view('pages.admin.informasi.edit', compact('informasi', 'title'));
+        $data = Informasi::findOrFail($id); // Konsistensi penamaan variabel
+        $title = 'Edit Informasi';
+        return view('pages.informasi.edit', compact('data', 'title'));
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'jam_operasional' => 'required',
-            'visi' => 'required',
-            'misi' => 'required',
-            'layanan' => 'required',
-            'pengumuman' => 'required',
+        $validatedData = $request->validate([
+            'jam_operasional' => 'required|string|max:255',
+            'visi' => 'required|string',
+            'misi' => 'required|string',
+            'layanan' => 'required|string',
+            'pengumuman' => 'nullable|string',
         ]);
 
         $informasi = Informasi::findOrFail($id);
-        $informasi->update($request->all());
-        return redirect()->route('admin.informasi.index')->with('success', 'Informasi berhasil diperbarui.');
+        $informasi->update($validatedData);
+
+        return redirect()->route('informasi.index')
+                        ->with('success', 'Informasi berhasil diperbarui!');
     }
 
     public function destroy($id)
     {
         $informasi = Informasi::findOrFail($id);
         $informasi->delete();
-        return redirect()->route('admin.informasi.index')->with('success', 'Informasi berhasil dihapus.');
+
+        return redirect()->route('informasi.index')
+                        ->with('success', 'Informasi berhasil dihapus');
     }
 }
