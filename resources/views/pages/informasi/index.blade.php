@@ -14,7 +14,7 @@
 
 <div class="col-12">
     <div class="bg-light rounded h-100 p-4">
-        <h6 class="mb-4">DAFTAR ADMIN</h6>
+        <h6 class="mb-4">INFORMASI PUSKESMAS</h6>
         <div class="table-responsive">
             <a href="{{ route('informasi.create') }}" class="btn btn-primary">Tambah Data</a>
             <table class="table">
@@ -38,8 +38,8 @@
                 <td>{{ $data->layanan }}</td>
                 <td>{{ $data->pengumuman }}</td>
                 <td>
-                    <form action="{{ route('admin.destroy', $data->id) }}" method="POST">
-                        <a href="{{ route('admin.edit', $data->id) }}" class="btn btn-sm btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
+                    <form action="{{ route('informasi.destroy', $data->id) }}" method="POST">
+                        <a href="{{ route('informasi.edit', $data->id) }}" class="btn btn-sm btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Konfirmasi untuk Hapus Data')" title="Hapus Data"><i class="fa fa-trash"></i></button>

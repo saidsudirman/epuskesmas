@@ -9,7 +9,7 @@ class InformasiController extends Controller
 {
     public function index()
     {
-        $datas = Informasi::latest()->get(); // Tambahkan latest() untuk urutan terbaru
+        $datas = Informasi::all(); // Tambahkan latest() untuk urutan terbaru
         $title = 'Informasi';
         return view('pages.informasi.index', compact('datas', 'title'));
     }
@@ -30,13 +30,18 @@ class InformasiController extends Controller
             'pengumuman' => 'nullable|string',
         ]);
 
-        // Simpan data sekaligus
-        Informasi::create($validatedData);
-
-        return redirect()->route('informasi.index')
-                        ->with('success', 'Informasi berhasil ditambahkan');
+        try {
+            Informasi::create($validatedData);
+            
+            return redirect()->route('informasi.index')
+                ->with('success', 'Informasi berhasil ditambahkan');
+                
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Gagal menambahkan informasi: ' . $e->getMessage());
+        }
     }
-
     public function edit($id)
     {
         $data = Informasi::findOrFail($id); // Konsistensi penamaan variabel
@@ -63,10 +68,15 @@ class InformasiController extends Controller
 
     public function destroy($id)
     {
-        $informasi = Informasi::findOrFail($id);
-        $informasi->delete();
-
-        return redirect()->route('informasi.index')
-                        ->with('success', 'Informasi berhasil dihapus');
+        try {
+            $informasi = Informasi::findOrFail($id);
+            $informasi->delete();
+            
+            return redirect()->route('informasi.index')
+                ->with('success', 'Data berhasil dihapus');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Gagal menghapus data: '.$e->getMessage());
+        }
     }
 }
