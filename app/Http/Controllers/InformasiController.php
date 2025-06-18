@@ -9,14 +9,14 @@ class InformasiController extends Controller
 {
     public function index()
     {
-        $datas = Informasi::all(); // Tambahkan latest() untuk urutan terbaru
+        $datas = Informasi::all();
         $title = 'Informasi';
         return view('pages.informasi.index', compact('datas', 'title'));
     }
 
     public function create()
     {
-        $title = 'Tambah Informasi'; // Judul lebih deskriptif
+        $title = 'Tambah Informasi';
         return view('pages.informasi.create', compact('title'));
     }
 
@@ -42,9 +42,10 @@ class InformasiController extends Controller
                 ->with('error', 'Gagal menambahkan informasi: ' . $e->getMessage());
         }
     }
+    
     public function edit($id)
     {
-        $data = Informasi::findOrFail($id); // Konsistensi penamaan variabel
+        $data = Informasi::findOrFail($id);
         $title = 'Edit Informasi';
         return view('pages.informasi.edit', compact('data', 'title'));
     }

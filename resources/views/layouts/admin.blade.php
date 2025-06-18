@@ -51,12 +51,10 @@
                 </a>
                 <div class="navbar-nav w-100">
                     <a href="{{ url('/admin/dashboard') }}" class="nav-item nav-link {{ ($title === "dashboard" ? 'active' : '')}}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="{{ url('/admin/informasi') }}" class="nav-item nav-link {{ ($title === "Data Pasien" ? 'active' : '')}}"><i class="fa fa-table me-2"></i>Informasi</a>
+                    <a href="{{ url('/admin/informasi') }}" class="nav-item nav-link {{ ($title === "Informasi Puskesmas" ? 'active' : '')}}"><i class="fa fa-table me-2"></i>Informasi</a>
                     <a href="{{ url('/admin/artikel') }}" class="nav-item nav-link {{ ($title === "Artikel Puskesmas" ? 'active' : '')}}"><i class="fa fa-chart-bar me-2"></i>Artikel</a>
-                    <a href="{{ url('/admin/poli') }}" class="nav-item nav-link {{ ($title === "Pelayanan Poli" ? 'active' : '')}}"><i class="fa fa-th me-2"></i>Jadwal Pelayanan</a>
-                    <a href="{{ url('/artikel') }}" class="nav-item nav-link {{ ($title === "Daftar Layanan" ? 'active' : '')}}"><i class="fa fa-user me-2"></i>layanan</a>
-                    <a href="{{ url('/admin/user') }}" class="nav-item nav-link {{ ($title === "Hasil Konsultasi" ? 'active' : '')}}"><i class="fa fa-user me-2"></i>Hasil Konsultasi</a>
-                    <a href="{{ url('/admin/admin') }}" class="nav-item nav-link {{ ($title === "Daftar Layanan" ? 'active' : '')}}"><i class="fa fa-user me-2"></i>Daftar Admin</a>
+                    <a href="{{ url('/admin/pelayanan') }}" class="nav-item nav-link {{ ($title === "Pelayanan Puskesmas" ? 'active' : '')}}"><i class="fa fa-th me-2"></i>Jadwal Pelayanan</a>
+                    <a href="{{ url('/admin/admin') }}" class="nav-item nav-link {{ ($title === "Daftar Admin" ? 'active' : '')}}"><i class="fa fa-user me-2"></i>Daftar Admin</a>
                 </div>
             </nav>
         </div>

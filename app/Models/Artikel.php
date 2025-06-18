@@ -9,13 +9,15 @@ class Artikel extends Model
 {
     use HasFactory;
 
-    protected $filleble = [
+    protected $table = 'artikel';
+
+    protected $fillable = [
         'judul',
         'isi',
         'gambar',
         'penulis',
-        'tanggal_terbit',
+
     ];
 
-    protected $dates = ['tanggal_terbit'];
+
 }

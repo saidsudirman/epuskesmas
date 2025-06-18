@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\PelayananController;
 
 
 Route::get('/', [PengunjungController::class, 'index']);
@@ -48,6 +49,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/artikel/{id}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit');
         Route::put('/artikel/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
         Route::delete('/artikel/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
+
+        Route::get('/pelayanan', [PelayananController::class, 'index'])->name('pelayanan.index');
+        Route::get('/pelayanan/create', [PelayananController::class, 'create'])->name('pelayanan.create');
+        Route::post('/pelayanan', [PelayananController::class, 'store'])->name('pelayanan.store');
+        Route::get('/pelayanan/{id}/edit', [PelayananController::class, 'edit'])->name('pelayanan.edit');
+        Route::put('/pelayanan/{id}', [PelayananController::class, 'update'])->name('pelayanan.update');
+        Route::delete('/pelayanan/{id}', [PelayananController::class, 'destroy'])->name('pelayanan.destroy');
 
         // Route::get('/laporan', [AdminController::class, 'laporan'])->name('admin.laporan');
         // Route::get('/laporan/{tgl_kunjung}', [AdminController::class, 'tgldetail'])->name('admin.tgldetail');

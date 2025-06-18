@@ -16,4 +16,9 @@ class Informasi extends Model
         'layanan', 
         'pengumuman'
     ];
+
+    public function pelayanan(): BelongsTo
+    {
+        return $this->belongsTo(Pelayanan::class);
+    }
 }

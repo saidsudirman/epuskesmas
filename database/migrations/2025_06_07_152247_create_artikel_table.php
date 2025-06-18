@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('judul');
             $table->text('isi');
             $table->string('gambar')->nullable();
-            $table->string('penulis')->nullable();
-            $table->timestamp('tanggal_terbit')->nullable();
+            $table->string('penulis')->default('Puskesmas Kalosi');
             $table->timestamps();
         });
     }

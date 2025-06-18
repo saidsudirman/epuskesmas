@@ -26,6 +26,7 @@
                         <th scope="col">MISI</th>
                         <th scope="col">LAYANAN</th>
                         <th scope="col">PENGUMUMAN</th>
+                        <th scope="col">ACTION</th>
                     </tr>
             </thead>
             <tbody>

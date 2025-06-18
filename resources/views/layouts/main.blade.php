@@ -84,7 +84,7 @@
                 <a href="{{ url('/contact') }}" class="nav-item nav-link {{ ($title === "Hubungi Kami" ? 'active' : '')}}">Contact</a>
                 <a href="{{ url('/login') }}" class="nav-item nav-link {{ ($title === "Login" ? 'active' : '')}}">Login</a>
             </div>
-            <a href="{{ url('/pendaftaran') }}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Pendaftaran Pasien<i class="fa fa-arrow-right ms-3"></i></a>
+            {{-- <a href="{{ url('/pendaftaran') }}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Pendaftaran Pasien<i class="fa fa-arrow-right ms-3"></i></a> --}}
         </div>
     </nav>
     <!-- Navbar End -->

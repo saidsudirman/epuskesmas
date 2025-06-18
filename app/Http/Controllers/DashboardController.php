@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artikel;
+use App\Models\Informasi;
+use App\Models\Pelayanan;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,8 +17,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $title = 'dashboard';
-        return view('pages.dashboard.index', compact('title'));
+        $artikelCount = Artikel::count();
+        $informasiCount = Informasi::count();
+        $pelayananCount = Pelayanan::count();
+        $userCount = User::count();
+        $title = 'DASHBOARD';
+        return view('pages.dashboard.index', compact('artikelCount', 'informasiCount', 'pelayananCount', 'userCount', 'title')); 
 
     }
 
