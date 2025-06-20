@@ -15,15 +15,14 @@ class PelayananController extends Controller
      */
     public function index()
     {
-        try {
-            $datas = Pelayanan::latest()->get();
-            $title = 'Manajemen Pelayanan';
-            
-            return view('pages.pelayanan.index', compact('datas', 'title'));
-        } catch (\Exception $e) {
-            Log::error('Error in PelayananController@index: '.$e->getMessage());
-            return redirect()->back()->with('error', 'Terjadi kesalahan saat menampilkan data pelayanan');
+        $pelayanans = Pelayanan::latest()->get();
+        $title = 'Manajemen Pelayanan';
+        
+        if(request()->is('admin*')) {
+            return view('pages.pelayanan.index', compact('pelayanans', 'title'));
         }
+        
+        return view('pengunjung.index', compact('pelayanans', 'title'));
     }
 
     /**
@@ -46,13 +45,13 @@ class PelayananController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nama_layanan' => 'required|string|max:255|unique:pelayanans,nama_layanan',
+            'nama_layanan' => 'required|string|max:255|unique:pelayanan,nama_layanan',
             'waktu_layanan' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
         ], [
             'nama_layanan.required' => 'Nama layanan wajib diisi',
-            'nama_layanan.unique' => 'Nama layanan sudah ada',
-            'waktu_layanan.required' => 'Waktu layanan wajib diisi',
+            'waktu_layanan.unique' => 'Nama layanan sudah ada',
+            'deskripsi.required' => 'Waktu layanan wajib diisi',
         ]);
 
         try {
@@ -100,13 +99,13 @@ class PelayananController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'nama_layanan' => 'required|string|max:255|unique:pelayanans,nama_layanan,'.$id,
+            'nama_layanan' => 'required|string|max:255|unique:pelayanan,nama_layanan,'.$id,
             'waktu_layanan' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
         ], [
             'nama_layanan.required' => 'Nama layanan wajib diisi',
-            'nama_layanan.unique' => 'Nama layanan sudah ada',
-            'waktu_layanan.required' => 'Waktu layanan wajib diisi',
+            'waktu_layanan.unique' => 'waktu layanan sudah ada',
+            'deskripsi.required' => 'deskripsi wajib di isi',
         ]);
 
         try {
@@ -144,5 +143,14 @@ class PelayananController extends Controller
             return redirect()->route('pelayanan.index')
                 ->with('error', 'Gagal menghapus pelayanan. Silakan coba lagi.');
         }
+    }
+
+    public function tampilkanLayanan()
+    {
+        $pelayanans = Pelayanan::all(); // Or use Pelayanan::latest()->get() for ordered results
+        $pelayanans = Pelayanan::all(); // Or use Pelayanan::latest()->get() for ordered results
+        $title = 'Layanan Kesehatan';
+        
+        return view('pengunjung.index', compact('pelayanans', 'title'));
     }
 }

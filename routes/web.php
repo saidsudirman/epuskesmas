@@ -16,6 +16,8 @@ Route::get('/', [PengunjungController::class, 'index']);
 Route::get('/pendaftaran', [PengunjungController::class, 'create'])->name('pengunjung.create');
 Route::post('/pendaftaran', [PengunjungController::class, 'store'])->name('pengunjung.store');
 
+Route::get('/', [PelayananController::class, 'tampilkanLayanan'])->name('layanan');
+
 Route::get('/about', [PengunjungController::class, 'about']);
 Route::get('/service', [PengunjungController::class, 'service']);
 Route::get('/dokter', [PengunjungController::class, 'dokter']);

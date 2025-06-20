@@ -68,9 +68,13 @@
                             @enderror
                         </div>
 
-                        <div class="card-footer text-right">
-                            <button type="submit" class="btn btn-primary">Update Informasi</button>
-                            <a href="{{ route('informasi.index') }}" class="btn btn-warning">Kembali</a>
+                        <div class="card-footer text-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-1"></i> Simpan Perubahan
+                            </button>
+                            <a href="{{ route('pelayanan.index') }}" class="btn btn-warning">
+                                <i class="fas fa-arrow-left me-1"></i> Kembali
+                            </a>
                         </div>
                     </form>
                 </div>

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Pengunjung;
 use App\Models\Poli;
 use App\Models\User;
+use App\Models\Pelayanan;
 use Carbon\Carbon;
 
 
@@ -60,8 +61,9 @@ class PengunjungController extends Controller
 
     public function service()
     {
-        return view('pengunjung.service', [
-            "title" => "Layanan Kami"]);
+        $pelayanans = Pelayanan::latest()->get();
+        $title = 'Manajemen Pelayanan';
+        return view('pengunjung.service', compact('pelayanans', 'title'));
     }
 
     public function dokter()

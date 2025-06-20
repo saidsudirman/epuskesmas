@@ -24,62 +24,56 @@
                 <p class="d-inline-block border rounded-pill py-1 px-4">Layanan Kami</p>
                 <h1>Solusi Kesehatan Anda</h1>
             </div>
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
-                            <i class="fa fa-heartbeat text-primary fs-4"></i>
-                        </div>
-                        <h4 class="mb-3">Kesehatan Umum</h4>
-                        <p class="mb-4">Pemeriksaan tekanan darah, gula darah, dan kolesterol. Memantau kesehatan tubuh secara berkala dan mencegah terjadinya penyakit yang lebih serius.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
-                            <i class="fa fa-x-ray text-primary fs-4"></i>
-                        </div>
-                        <h4 class="mb-3">Imunisasi</h4>
-                        <p class="mb-4">Pelayanan kesehatan bagi ibu dan anak-anak, untuk mencegah penyebaran penyakit yang dapat mengancam kesehatan, seperti campak, polio dan hepatitis.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
-                            <i class="fa fa-tooth text-primary fs-4"></i>
-                        </div>
-                        <h4 class="mb-3">Kesehatan Gigi</h4>
-                        <p class="mb-4">Memberikan perawatan gigi dan mulut untuk mencegah terjadinya masalah kesehatan gigi yang lebih serius di masa depan</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
-                            <i class="fa fa-wheelchair text-primary fs-4"></i>
-                        </div>
-                        <h4 class="mb-3">Kesehatan Lingkungan</h4>
-                        <p class="mb-4">Mengawasi kebersihan lingkungan, sanitasi lingkungan, dan pengawasan penyediaan air bersih untuk mencegah terjadinya penyakit yang disebabkan oleh lingkungan yang tidak sehat</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
-                            <i class="fa fa-brain text-primary fs-4"></i>
-                        </div>
-                        <h4 class="mb-3">Kesehatan Jiwa</h4>
-                        <p class="mb-4">Menyediakan pelayanan kesehatan jiwa konseling dan terapi bagi pasien dengan masalah kesehatan jiwa untuk membantu pasien mengatasi masalah mental dan emosional, seperti stres, depresi dan kecemasan</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
-                            <i class="fa fa-vials text-primary fs-4"></i>
-                        </div>
-                        <h4 class="mb-3">Kesehatan Reproduksi</h4>
-                        <p class="mb-4">Memberikan layanan pemeriksaan kehamilan, perawatan pasca persalinan dan konseling tentang kesehatan reproduksi untuk membantu ibu dan pasangan dalam merencanakan keluarga dan menjaga kesehatan reproduksi</p>
-                    </div>
-                </div>
+<div class="row g-4">
+    @foreach($pelayanans as $pelayanan)
+    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ $loop->iteration * 0.2 }}s">
+        <div class="service-item bg-light rounded h-100 p-5 position-relative overflow-hidden">
+            <!-- Decorative element -->
+            <div class="position-absolute top-0 end-0 bg-primary opacity-10" style="width: 150px; height: 150px; border-radius: 50%; transform: translate(50px, -50px);"></div>
+            
+            <!-- Service content -->
+            <div class="position-relative">
+                <h4 class="mb-3 text-dark">{{ $pelayanan->nama_layanan }}</h4>
+                <p class="mb-3 text-muted">{{ $pelayanan->deskripsi }}</p>
+                <h5> Waktu Layanan </h5>
+                <h6 class="mb-3 text-muted">{{ $pelayanan->waktu_layanan }}</h6>
+                <!-- Improved Service time display -->
             </div>
+            
+            <!-- Hover effect -->
+            <div class="service-hover-overlay"></div>
+        </div> 
+    </div>
+    @endforeach
+</div>
+
+<style>
+    .service-item {
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .service-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-color: rgba(var(--bs-primary-rgb), 0.2);
+    }
+    
+    .service-hover-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(var(--bs-primary-rgb), 0.03) 0%, rgba(var(--bs-primary-rgb), 0.01) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .service-item:hover .service-hover-overlay {
+        opacity: 1;
+    }
+</style>
         </div>
     </div>
     <!-- Service End -->

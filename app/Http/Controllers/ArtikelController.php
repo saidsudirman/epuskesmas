@@ -97,4 +97,11 @@ class ArtikelController extends Controller
 
         return redirect()->route('artikel.index')->with('success', 'Artikel berhasil dihapus.');
     }
+
+        public function artikel()
+    {
+        $datas = \App\Models\Artikel::latest()->get(); 
+        $title = 'layanan';
+        return view('pengunjung.index', compact('datas', 'title'));
+    }
 }
