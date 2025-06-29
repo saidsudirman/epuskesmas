@@ -17,8 +17,13 @@ Route::get('/pendaftaran', [PengunjungController::class, 'create'])->name('pengu
 Route::post('/pendaftaran', [PengunjungController::class, 'store'])->name('pengunjung.store');
 
 Route::get('/', [PelayananController::class, 'tampilkanLayanan'])->name('layanan');
+Route::get('/layanan', [PengunjungController::class, 'service'])->name('layanan');
+
+Route::get('/artikel', [PengunjungController::class, 'tampilkanArtikel'])->name('artikel');
+Route::get('/artikel/{id}', [PengunjungController::class, 'detailArtikel'])->name('artikel.detail');
 
 Route::get('/about', [PengunjungController::class, 'about']);
+Route::get('/about', [PengunjungController::class, 'tampilkanArtikel']);
 Route::get('/service', [PengunjungController::class, 'service']);
 Route::get('/dokter', [PengunjungController::class, 'dokter']);
 Route::get('/contact', [PengunjungController::class, 'contact']);

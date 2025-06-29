@@ -104,4 +104,12 @@ class ArtikelController extends Controller
         $title = 'layanan';
         return view('pengunjung.index', compact('datas', 'title'));
     }
+
+        public function tampilkanArtikel()
+    {
+        $artikels = Artikel::all();
+        $title = 'Artikel Kesehatan';
+        
+        return view('pengunjung.about', compact('artikels', 'title'));
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pelayanan;
+use App\Models\Artikel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -147,10 +148,10 @@ class PelayananController extends Controller
 
     public function tampilkanLayanan()
     {
-        $pelayanans = Pelayanan::all(); // Or use Pelayanan::latest()->get() for ordered results
-        $pelayanans = Pelayanan::all(); // Or use Pelayanan::latest()->get() for ordered results
+        $pelayanans = Pelayanan::all();
+        $artikels = Artikel::all();
         $title = 'Layanan Kesehatan';
         
-        return view('pengunjung.index', compact('pelayanans', 'title'));
+        return view('pengunjung.index', compact('pelayanans', 'artikels', 'title'));
     }
 }

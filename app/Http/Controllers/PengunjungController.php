@@ -8,12 +8,11 @@ use App\Models\Pengunjung;
 use App\Models\Poli;
 use App\Models\User;
 use App\Models\Pelayanan;
+use App\Models\Artikel;
 use Carbon\Carbon;
-
 
 class PengunjungController extends Controller
 {
-
     public function index()
     {
         $hari = Carbon::today();
@@ -21,61 +20,97 @@ class PengunjungController extends Controller
         $pengunjung = Pengunjung::whereDate('tgl_kunjung', $hari)->count();
         $pengunjungbesok = Pengunjung::whereDate('tgl_kunjung', $besok)->count();
         $semuapengunjung = Pengunjung::count();
+        $artikels = Artikel::latest()->take(3)->get();
+        $pelayanans = Pelayanan::latest()->take(6)->get(); 
 
         return view('pengunjung.index', [
-            "title" => "Beranda"], compact('pengunjung', 'pengunjungbesok', 'semuapengunjung'));
+            "title" => "Beranda"
+        ], compact('pengunjung', 'pengunjungbesok', 'semuapengunjung', 'artikels', 'pelayanans'));
     }
-
 
     public function create()
     {
         $polis = Poli::all();
         return view('pengunjung.pendaftaran', [
-            "title" => "Pendaftaran Pasien"] , compact('polis'));
+            "title" => "Pendaftaran Pasien"
+        ], compact('polis'));
     }
-
 
     public function store(Request $request)
     {
-        $request ->validate([
+        $validatedData = $request->validate([
             'nik' => 'required|digits:16|unique:pengunjungs|numeric',
-            'nama' => 'required',
+            'nama' => 'required|string|max:255',
             'telepon' => 'required|numeric',
-            'alamat' => 'required',
-            'tgl_kunjung' => 'required|date',
-            'poli_id' => 'required',
+            'alamat' => 'required|string',
+            'tgl_kunjung' => 'required|date|after_or_equal:today',
+            'poli_id' => 'required|exists:polis,id',
+        ], [
+            'tgl_kunjung.after_or_equal' => 'Tanggal kunjungan tidak boleh sebelum hari ini',
+            'nik.unique' => 'NIK sudah terdaftar',
+            'poli_id.exists' => 'Poli yang dipilih tidak valid'
         ]);
 
-        Pengunjung::create($request->all());
+        Pengunjung::create($validatedData);
 
-        
-        return redirect()->route('pengunjung.create')->with('success', 'Pendaftaran Berhasil!');
+        return redirect()->route('pengunjung.create')
+            ->with('success', 'Pendaftaran Berhasil!');
     }
-
 
     public function about()
     {
+        $artikels = Artikel::latest()->take(3)->get();
         return view('pengunjung.about', [
-            "title" => "Tentang Kami"]);
+            "title" => "Tentang Kami"
+        ], compact('artikels'));
     }
 
     public function service()
     {
         $pelayanans = Pelayanan::latest()->get();
-        $title = 'Manajemen Pelayanan';
-        return view('pengunjung.service', compact('pelayanans', 'title'));
+        return view('pengunjung.service', [
+            "title" => "Layanan Kami",
+            "pelayanans" => $pelayanans
+        ]);
     }
 
     public function dokter()
     {
+        $dokters = User::where('role', 'dokter')->get();
         return view('pengunjung.dokter', [
-            "title" => "Tenaga Medis Kami"]);
+            "title" => "Tenaga Medis Kami",
+            "dokters" => $dokters
+        ]);
     }
 
     public function contact()
     {
         return view('pengunjung.contact', [
-            "title" => "Hubungi Kami"]);
+            "title" => "Hubungi Kami"
+        ]);
     }
 
+    public function tampilkanArtikel()
+    {
+        $artikels = Artikel::latest()->paginate(6);
+        return view('pengunjung.about', [
+            "title" => "Artikel Kesehatan",
+            "artikels" => $artikels
+        ]);
+    }
+
+    public function detailArtikel($id)
+    {
+        $artikel = Artikel::findOrFail($id);
+        $artikelTerbaru = Artikel::where('id', '!=', $id)
+            ->latest()
+            ->take(3)
+            ->get();
+
+        return view('pengunjung.index', [
+            "title" => $artikel->judul,
+            "artikel" => $artikel,
+            "artikelTerbaru" => $artikelTerbaru
+        ]);
+    }
 }
