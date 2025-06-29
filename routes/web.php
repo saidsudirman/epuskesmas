@@ -23,7 +23,7 @@ Route::get('/artikel', [PengunjungController::class, 'tampilkanArtikel'])->name(
 Route::get('/artikel/{id}', [PengunjungController::class, 'detailArtikel'])->name('artikel.detail');
 
 Route::get('/about', [PengunjungController::class, 'about']);
-Route::get('/about', [PengunjungController::class, 'tampilkanArtikel']);
+Route::get('/artikel', [PengunjungController::class, 'tampilkanArtikel'])->name('artikel');
 Route::get('/service', [PengunjungController::class, 'service']);
 Route::get('/dokter', [PengunjungController::class, 'dokter']);
 Route::get('/contact', [PengunjungController::class, 'contact']);

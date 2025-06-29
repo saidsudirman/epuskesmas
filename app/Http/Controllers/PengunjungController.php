@@ -57,13 +57,6 @@ class PengunjungController extends Controller
             ->with('success', 'Pendaftaran Berhasil!');
     }
 
-    public function about()
-    {
-        $artikels = Artikel::latest()->take(3)->get();
-        return view('pengunjung.about', [
-            "title" => "Tentang Kami"
-        ], compact('artikels'));
-    }
 
     public function service()
     {
@@ -90,14 +83,21 @@ class PengunjungController extends Controller
         ]);
     }
 
+    public function about()
+    {
+        return view('pengunjung.about', ["title" => "Tentang Kami"]);
+    }
+
     public function tampilkanArtikel()
     {
         $artikels = Artikel::latest()->paginate(6);
-        return view('pengunjung.about', [
+
+        return view('pengunjung.artikel.index', [
             "title" => "Artikel Kesehatan",
             "artikels" => $artikels
         ]);
     }
+
 
     public function detailArtikel($id)
     {
@@ -107,10 +107,11 @@ class PengunjungController extends Controller
             ->take(3)
             ->get();
 
-        return view('pengunjung.index', [
+        return view('pengunjung.artikel.index', [
             "title" => $artikel->judul,
             "artikel" => $artikel,
             "artikelTerbaru" => $artikelTerbaru
         ]);
     }
+
 }
