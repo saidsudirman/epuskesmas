@@ -21,6 +21,22 @@
                     <form action="{{ route('informasi.update', $data->id) }}" method="POST">
                         @csrf
                         @method('PUT')
+
+                        <div class="form-group">
+                            <label for="pelayanan_id">Nama Layanan</label>
+                            <select class="form-control @error('pelayanan_id') is-invalid @enderror" id="pelayanan_id" name="pelayanan_id" required>
+                                <option value="">-- Pilih Layanan --</option>
+                                @foreach($pelayanans as $pelayanan)
+                                    <option value="{{ $pelayanan->id }}" {{ old('pelayanan_id', $data->pelayanan_id) == $pelayanan->id ? 'selected' : '' }}>
+                                        {{ $pelayanan->nama_layanan }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('pelayanan_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                         
                         <div class="form-group">
                             <label for="jam_operasional">Jam Operasional</label>

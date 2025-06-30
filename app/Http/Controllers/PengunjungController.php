@@ -9,6 +9,7 @@ use App\Models\Poli;
 use App\Models\User;
 use App\Models\Pelayanan;
 use App\Models\Artikel;
+use App\Models\Informasi;
 use Carbon\Carbon;
 
 class PengunjungController extends Controller
@@ -21,11 +22,12 @@ class PengunjungController extends Controller
         $pengunjungbesok = Pengunjung::whereDate('tgl_kunjung', $besok)->count();
         $semuapengunjung = Pengunjung::count();
         $artikels = Artikel::latest()->take(3)->get();
-        $pelayanans = Pelayanan::latest()->take(6)->get(); 
+        $pelayanans = Pelayanan::latest()->take(6)->get();
+        $informasi = Informasi::first(); 
 
         return view('pengunjung.index', [
             "title" => "Beranda"
-        ], compact('pengunjung', 'pengunjungbesok', 'semuapengunjung', 'artikels', 'pelayanans'));
+        ], compact('pengunjung', 'pengunjungbesok', 'semuapengunjung', 'artikels', 'pelayanans', 'informasi'));
     }
 
     public function create()
@@ -69,7 +71,7 @@ class PengunjungController extends Controller
 
     public function dokter()
     {
-        $dokters = User::where('role', 'dokter')->get();
+       $dokters = User::all();
         return view('pengunjung.dokter', [
             "title" => "Tenaga Medis Kami",
             "dokters" => $dokters
@@ -85,7 +87,11 @@ class PengunjungController extends Controller
 
     public function about()
     {
-        return view('pengunjung.about', ["title" => "Tentang Kami"]);
+        $artikels = Artikel::latest()->paginate(6);
+        return view('pengunjung.about', [
+            'title' => 'Tentang Kami',
+            'artikels' => $artikels
+        ]);
     }
 
     public function tampilkanArtikel()

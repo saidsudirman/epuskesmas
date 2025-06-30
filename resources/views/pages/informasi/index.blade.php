@@ -20,35 +20,38 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">JAM OPERASIONAL</th>
-                        <th scope="col">VISI</th>
-                        <th scope="col">MISI</th>
-                        <th scope="col">LAYANAN</th>
-                        <th scope="col">PENGUMUMAN</th>
-                        <th scope="col">ACTION</th>
+                        <th>#</th>
+                        <th>Layanan</th>
+                        <th>Jam Operasional</th>
+                        <th>Visi</th>
+                        <th>Misi</th>
+                        <th>Pengumuman</th>
+                        <th>Action</th>
                     </tr>
-            </thead>
+                </thead>
             <tbody>
                 @foreach($datas as $data)
-                <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $data->jam_operasional }}</td>
-                <td>{{ $data->visi }}</td>
-                <td>{{ $data->misi }}</td>
-                <td>{{ $data->layanan }}</td>
-                <td>{{ $data->pengumuman }}</td>
-                <td>
-                    <form action="{{ route('informasi.destroy', $data->id) }}" method="POST">
-                        <a href="{{ route('informasi.edit', $data->id) }}" class="btn btn-sm btn-primary" title="Edit Data"><i class="fa fa-edit"></i></a>
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Konfirmasi untuk Hapus Data')" title="Hapus Data"><i class="fa fa-trash"></i></button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $data->pelayanan->nama_layanan ?? '-' }}</td>
+                        <td>{{ $data->jam_operasional }}</td>
+                        <td>{{ $data->visi }}</td>
+                        <td>{{ $data->misi }}</td>
+                        <td>{{ $data->pengumuman }}</td>
+                        <td>
+                            <form action="{{ route('informasi.destroy', $data->id) }}" method="POST">
+                                <a href="{{ route('informasi.edit', $data->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Konfirmasi untuk Hapus Data')">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+
     </table>
 </div>
 </div>
