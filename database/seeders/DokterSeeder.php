@@ -21,7 +21,7 @@ class DokterSeeder extends Seeder
                 'whatsapp' => '6281122334455',
                 'spesialis' => 'Penyakit Dalam',
                 'jam_kerja' => 'Senin-Jumat, 08:00-15:00',
-                'foto' => 'team-1.jpg'
+                'foto' => 'upload/dokter/team-1.jpg'
             ],
             [
                 'nama' => 'Dr. Budi Setiawan, Sp.OG',
@@ -30,7 +30,7 @@ class DokterSeeder extends Seeder
                 'whatsapp' => '6282233445566',
                 'spesialis' => 'Kebidanan dan Kandungan',
                 'jam_kerja' => 'Senin-Rabu, 10:00-17:00',
-                'foto' => 'team-2.jpg'
+                'foto' => 'upload/dokter/team-2.jpg'
             ],
             [
                 'nama' => 'Dr. Citra Dewi, Sp.A',
@@ -39,7 +39,7 @@ class DokterSeeder extends Seeder
                 'whatsapp' => '6283344556677',
                 'spesialis' => 'Anak',
                 'jam_kerja' => 'Selasa-Kamis, 09:00-16:00',
-                'foto' => 'team-3.jpg'
+                'foto' => 'upload/dokter/team-3.jpg'
             ],
         ];
 
