@@ -67,15 +67,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="layanan">Layanan</label>
-                            <textarea name="layanan" id="layanan" rows="3"
-                                class="form-control @error('layanan') is-invalid @enderror">{{ old('layanan', $data->layanan) }}</textarea>
-                            @error('layanan')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
                             <label for="pengumuman">Pengumuman</label>
                             <textarea name="pengumuman" id="pengumuman" rows="3"
                                 class="form-control @error('pengumuman') is-invalid @enderror">{{ old('pengumuman', $data->pengumuman) }}</textarea>
@@ -88,7 +79,7 @@
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-save me-1"></i> Simpan Perubahan
                             </button>
-                            <a href="{{ route('pelayanan.index') }}" class="btn btn-warning">
+                            <a href="{{ route('informasi.index') }}" class="btn btn-warning">
                                 <i class="fas fa-arrow-left me-1"></i> Kembali
                             </a>
                         </div>

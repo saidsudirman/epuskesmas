@@ -19,10 +19,10 @@
             </div>
         </div>
         
-        <!-- Statistic Cards -->
+        <!-- First Row - 3 Cards -->
         <div class="row">
             <!-- Informasi Card -->
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-12">
                 <div class="card card-statistic-1 shadow-sm">
                     <div class="card-icon bg-info-gradient">
                         <i class="fas fa-info-circle"></i>
@@ -39,7 +39,7 @@
             </div>
             
             <!-- Artikel Card -->
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-12">
                 <div class="card card-statistic-1 shadow-sm">
                     <div class="card-icon bg-success-gradient">
                         <i class="fas fa-newspaper"></i>
@@ -56,7 +56,7 @@
             </div>
             
             <!-- Jadwal Pelayanan Card -->
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-12">
                 <div class="card card-statistic-1 shadow-sm">
                     <div class="card-icon bg-warning-gradient">
                         <i class="fas fa-calendar-alt"></i>
@@ -71,9 +71,12 @@
                     </div>
                 </div>
             </div>
-            
+        </div>
+
+        <!-- Second Row - 2 Cards -->
+        <div class="row">
             <!-- Daftar Admin Card -->
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1 shadow-sm">
                     <div class="card-icon bg-danger-gradient">
                         <i class="fas fa-users-cog"></i>
@@ -84,6 +87,23 @@
                         </div>
                         <div class="card-body">
                             <h1 class="mb-3 font-35 ">{{ $userCount }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daftar Dokter Card -->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1 shadow-sm">
+                    <div class="card-icon bg-primary-gradient">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4>Daftar Dokter</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="mb-3 font-35 ">{{ $dokterCount }}</h1>
                         </div>
                     </div>
                 </div>
@@ -133,6 +153,10 @@
     
     .bg-danger-gradient {
         background: linear-gradient(135deg, #fc544b 0%, #c21807 100%);
+    }
+
+    .bg-primary-gradient {
+        background: linear-gradient(135deg, #6777ef 0%, #3a4fce 100%);
     }
     
     .card-wrap {

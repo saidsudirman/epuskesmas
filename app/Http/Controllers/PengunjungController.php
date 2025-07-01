@@ -24,9 +24,9 @@ public function index()
     $pengunjungbesok = Pengunjung::whereDate('tgl_kunjung', $besok)->count();
     $semuapengunjung = Pengunjung::count();
 
-    $artikels = Artikel::latest()->take(3)->get();
-    $dokters = Dokter::latest()->take(4)->get();
-    $pelayanans = Pelayanan::latest()->take(6)->get();
+    $artikels = Artikel::all();
+    $dokters = Dokter::all();
+    $pelayanans = Pelayanan::all();
     $informasi = Informasi::first();
 
     return view('pengunjung.index', [
@@ -74,7 +74,7 @@ public function index()
 
     public function service()
     {
-        $pelayanans = Pelayanan::latest()->get();
+        $pelayanans = Pelayanan::all();
         return view('pengunjung.service', [
             "title" => "Layanan Kami",
             "pelayanans" => $pelayanans
@@ -83,7 +83,7 @@ public function index()
 
     public function dokter()
     {
-        $dokters = Dokter::latest()->paginate(6);
+        $dokters = Dokter::all();
         return view('pengunjung.dokter', [
             'title' => 'Tenaga Medis',
             'dokters' => $dokters
@@ -99,7 +99,7 @@ public function index()
 
     public function about()
     {
-        $artikels = Artikel::latest()->paginate(6);
+        $artikels = Artikel::all();
         return view('pengunjung.about', [
             'title' => 'Tentang Kami',
             'artikels' => $artikels
@@ -108,7 +108,7 @@ public function index()
 
     public function tampilkanArtikel()
     {
-        $artikels = Artikel::latest()->paginate(6);
+        $artikels = Artikel::all();
 
         return view('pengunjung.index', [
             "title" => "Artikel Kesehatan",
@@ -133,7 +133,7 @@ public function index()
 
     public function tampilkanDokter()
     {
-        $dokters = Dokter::latest()->paginate(6);
+        $dokters = Dokter::all();
 
         return view('pengunjung.dokter', [
             "title" => "Dokter Kesehatan",

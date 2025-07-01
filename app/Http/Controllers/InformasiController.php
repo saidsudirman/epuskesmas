@@ -61,7 +61,6 @@ class InformasiController extends Controller
             'jam_operasional' => 'required|string|max:255',
             'visi' => 'required|string',
             'misi' => 'required|string',
-            'layanan' => 'required|string',
             'pengumuman' => 'nullable|string',
         ]);
 

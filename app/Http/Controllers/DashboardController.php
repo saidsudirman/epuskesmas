@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artikel;
+use App\Models\Dokter;
 use App\Models\Informasi;
 use App\Models\Pelayanan;
 use Illuminate\Foundation\Auth\User;
@@ -21,8 +22,9 @@ class DashboardController extends Controller
         $informasiCount = Informasi::count();
         $pelayananCount = Pelayanan::count();
         $userCount = User::count();
+        $dokterCount = Dokter::count();
         $title = 'DASHBOARD';
-        return view('pages.dashboard.index', compact('artikelCount', 'informasiCount', 'pelayananCount', 'userCount', 'title')); 
+        return view('pages.dashboard.index', compact('artikelCount', 'informasiCount', 'pelayananCount', 'userCount', 'dokterCount', 'title')); 
 
     }
 
