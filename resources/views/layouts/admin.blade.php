@@ -54,6 +54,7 @@
                     <a href="{{ url('/admin/informasi') }}" class="nav-item nav-link {{ ($title === "Informasi Puskesmas" ? 'active' : '')}}"><i class="fa fa-table me-2"></i>Informasi</a>
                     <a href="{{ url('/admin/artikel') }}" class="nav-item nav-link {{ ($title === "Artikel Puskesmas" ? 'active' : '')}}"><i class="fa fa-chart-bar me-2"></i>Artikel</a>
                     <a href="{{ url('/admin/pelayanan') }}" class="nav-item nav-link {{ ($title === "Pelayanan Puskesmas" ? 'active' : '')}}"><i class="fa fa-th me-2"></i>Jadwal Pelayanan</a>
+                    <a href="{{ url('/admin/dokter') }}" class="nav-item nav-link {{ ($title === "Daftar Dokter" ? 'active' : '')}}"><i class="fa fa-user me-2"></i>Daftar Dokter</a>
                     <a href="{{ url('/admin/admin') }}" class="nav-item nav-link {{ ($title === "Daftar Admin" ? 'active' : '')}}"><i class="fa fa-user me-2"></i>Daftar Admin</a>
                 </div>
             </nav>

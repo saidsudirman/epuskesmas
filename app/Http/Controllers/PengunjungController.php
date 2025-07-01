@@ -98,7 +98,7 @@ class PengunjungController extends Controller
     {
         $artikels = Artikel::latest()->paginate(6);
 
-        return view('pengunjung.artikel.index', [
+        return view('artikel.index', [
             "title" => "Artikel Kesehatan",
             "artikels" => $artikels
         ]);
@@ -113,7 +113,7 @@ class PengunjungController extends Controller
             ->take(3)
             ->get();
 
-        return view('pengunjung.artikel.index', [
+        return view('artikel.index', [
             "title" => $artikel->judul,
             "artikel" => $artikel,
             "artikelTerbaru" => $artikelTerbaru

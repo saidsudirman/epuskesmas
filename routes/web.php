@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengunjungController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DokterController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArtikelController;
@@ -56,6 +57,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/artikel/{id}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit');
         Route::put('/artikel/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
         Route::delete('/artikel/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
+
+        Route::get('/dokter', [DokterController::class, 'index'])->name('dokter.index');
+        Route::get('/dokter/create', [DokterController::class, 'create'])->name('dokter.create');
+        Route::post('/dokter', [DokterController::class, 'store'])->name('dokter.store');
+        Route::get('/dokter/{id}/edit', [DokterController::class, 'edit'])->name('dokter.edit');
+        Route::put('/dokter/{id}', [DokterController::class, 'update'])->name('dokter.update');
+        Route::delete('/dokter/{id}', [DokterController::class, 'destroy'])->name('dokter.destroy');
 
         Route::get('/pelayanan', [PelayananController::class, 'index'])->name('pelayanan.index');
         Route::get('/pelayanan/create', [PelayananController::class, 'create'])->name('pelayanan.create');
