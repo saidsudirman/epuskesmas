@@ -9,6 +9,7 @@ use App\Models\Poli;
 use App\Models\User;
 use App\Models\Pelayanan;
 use App\Models\Artikel;
+use App\Models\Dokter;
 use App\Models\Informasi;
 use Carbon\Carbon;
 
@@ -17,25 +18,36 @@ class PengunjungController extends Controller
     public function index()
     {
         $hari = Carbon::today();
-        $besok = Carbon::today()->addDay();
+        $besok = Carbon::tomorrow();
+        
         $pengunjung = Pengunjung::whereDate('tgl_kunjung', $hari)->count();
         $pengunjungbesok = Pengunjung::whereDate('tgl_kunjung', $besok)->count();
         $semuapengunjung = Pengunjung::count();
+
         $artikels = Artikel::latest()->take(3)->get();
+        $dokters = Dokter::latest()->take(4)->get(); // tampilkan 4 dokter
         $pelayanans = Pelayanan::latest()->take(6)->get();
-        $informasi = Informasi::first(); 
+        $informasi = Informasi::first();
 
         return view('pengunjung.index', [
-            "title" => "Beranda"
-        ], compact('pengunjung', 'pengunjungbesok', 'semuapengunjung', 'artikels', 'pelayanans', 'informasi'));
+            "title" => "Beranda",
+            "pengunjung" => $pengunjung,
+            "pengunjungbesok" => $pengunjungbesok,
+            "semuapengunjung" => $semuapengunjung,
+            "artikels" => $artikels,
+            "pelayanans" => $pelayanans,
+            "informasi" => $informasi,
+            "dokters" => $dokters
+        ]);
     }
 
     public function create()
     {
         $polis = Poli::all();
         return view('pengunjung.pendaftaran', [
-            "title" => "Pendaftaran Pasien"
-        ], compact('polis'));
+            "title" => "Pendaftaran Pasien",
+            "polis" => $polis
+        ]);
     }
 
     public function store(Request $request)
@@ -59,7 +71,6 @@ class PengunjungController extends Controller
             ->with('success', 'Pendaftaran Berhasil!');
     }
 
-
     public function service()
     {
         $pelayanans = Pelayanan::latest()->get();
@@ -71,10 +82,19 @@ class PengunjungController extends Controller
 
     public function dokter()
     {
-       $dokters = User::all();
+        $dokters = Dokter::latest()->paginate(6);
         return view('pengunjung.dokter', [
-            "title" => "Tenaga Medis Kami",
-            "dokters" => $dokters
+            'title' => 'Tenaga Medis',
+            'dokters' => $dokters
+        ]);
+    }
+
+    public function detailDokter($id)
+    {
+        $dokter = Dokter::findOrFail($id);
+        return view('dokters.index', [
+            "title" => "Detail Dokter",
+            "dokter" => $dokter
         ]);
     }
 
@@ -104,7 +124,6 @@ class PengunjungController extends Controller
         ]);
     }
 
-
     public function detailArtikel($id)
     {
         $artikel = Artikel::findOrFail($id);
@@ -120,4 +139,13 @@ class PengunjungController extends Controller
         ]);
     }
 
+    public function tampilkanDokter()
+    {
+        $dokters = Dokter::latest()->paginate(6);
+
+        return view('dokters.index', [
+            "title" => "Dokter Kesehatan",
+            "dokters" => $dokters
+        ]);
+    }
 }

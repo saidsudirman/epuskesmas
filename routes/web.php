@@ -23,8 +23,12 @@ Route::get('/layanan', [PengunjungController::class, 'service'])->name('layanan'
 Route::get('/artikel', [PengunjungController::class, 'tampilkanArtikel'])->name('artikel');
 Route::get('/artikel/{id}', [PengunjungController::class, 'detailArtikel'])->name('artikel.detail');
 
+Route::get('/dokter', [PengunjungController::class, 'tampilkanDokter'])->name('dokter');
+Route::get('/dokter/{id}', [PengunjungController::class, 'detailDokter'])->name('dokter.detail');
+
 Route::get('/about', [PengunjungController::class, 'about']);
 Route::get('/artikel', [PengunjungController::class, 'tampilkanArtikel'])->name('artikel');
+Route::get('/dokter', [PengunjungController::class, 'tampilkanDokter'])->name('dokter');
 Route::get('/service', [PengunjungController::class, 'service']);
 Route::get('/dokter', [PengunjungController::class, 'dokter']);
 Route::get('/contact', [PengunjungController::class, 'contact']);
@@ -57,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/artikel/{id}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit');
         Route::put('/artikel/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
         Route::delete('/artikel/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
+
 
         Route::get('/dokter', [DokterController::class, 'index'])->name('dokter.index');
         Route::get('/dokter/create', [DokterController::class, 'create'])->name('dokter.create');

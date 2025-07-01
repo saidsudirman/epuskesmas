@@ -16,7 +16,6 @@
 </div>
 <!-- Page Header End -->
 
-
 <!-- Team Start -->
 <div class="container-xxl py-5">
     <div class="container">
@@ -25,97 +24,29 @@
             <h1>Tenaga Medis Berpengalaman</h1>
         </div>
         <div class="row g-4">
+            @forelse($dokters as $dokter)
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item position-relative rounded overflow-hidden">
+                <div class="team-item position-relative rounded overflow-hidden shadow-sm">
                     <div class="overflow-hidden">
-                        <img class="img-fluid" src="{{ asset('home/img/team-1.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('upload/dokter/' . $dokter->foto) }}" alt="{{ $dokter->nama }}" style="height: 250px; object-fit: cover; width: 100%;">
                     </div>
                     <div class="team-text bg-light text-center p-4">
-                        <h5>Fitriani Kusumawati</h5>
-                        <p class="text-primary">Departemen Kesehatan Anak</p>
+                        <h5 class="mb-1">{{ $dokter->nama }}</h5>
+                        <p class="text-primary mb-2">{{ $dokter->spesialis }}</p>
+                        <a href="{{ route('dokter.detail', $dokter->id) }}" class="btn btn-sm btn-outline-primary rounded-pill">Baca Selengkapnya</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="team-item position-relative rounded overflow-hidden">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid" src="{{ asset('home/img/team-2.jpg') }}" alt="">
-                    </div>
-                    <div class="team-text bg-light text-center p-4">
-                        <h5>Wijaya Pranata</h5>
-                        <p class="text-primary">Departemen Kesehatan Jiwa</p>
-                    </div>
+            @empty
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    Belum ada data dokter yang tersedia.
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="team-item position-relative rounded overflow-hidden">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid" src="{{ asset('home/img/team-3.jpg') }}" alt="">
-                    </div>
-                    <div class="team-text bg-light text-center p-4">
-                        <h5>Dina Ayuningtyas</h5>
-                        <p class="text-primary">Departemen Urologi</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                <div class="team-item position-relative rounded overflow-hidden">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid" src="{{ asset('home/img/team-4.jpg') }}" alt="">
-                    </div>
-                    <div class="team-text bg-light text-center p-4">
-                        <h5>Ahmad Setiawan</h5>
-                        <p class="text-primary">Departemen Radiologi</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="team-item position-relative rounded overflow-hidden">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid" src="{{ asset('home/img/team-3.jpg') }}" alt="">
-                    </div>
-                    <div class="team-text bg-light text-center p-4">
-                        <h5>Nurul Hidayati</h5>
-                        <p class="text-primary">Departemen Kulit dan Kelamin</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item position-relative rounded overflow-hidden">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid" src="{{ asset('home/img/team-1.jpg') }}" alt="">
-                    </div>
-                    <div class="team-text bg-light text-center p-4">
-                        <h5>Rika Wardani</h5>
-                        <p class="text-primary">Departemen Bedah Plastik</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                <div class="team-item position-relative rounded overflow-hidden">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid" src="{{ asset('home/img/team-4.jpg') }}" alt="">
-                    </div>
-                    <div class="team-text bg-light text-center p-4">
-                        <h5>Bagus Kurniawan</h5>
-                        <p class="text-primary">Departemen Jantung</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="team-item position-relative rounded overflow-hidden">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid" src="{{ asset('home/img/team-2.jpg') }}" alt="">
-                    </div>
-                    <div class="team-text bg-light text-center p-4">
-                        <h5>Surya Pratama</h5>
-                        <p class="text-primary">Departemen Penyakit Dalam</p>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
 </div>
 <!-- Team End -->
 
-@endsection<!-- End #section -->
+@endsection

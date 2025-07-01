@@ -13,7 +13,11 @@ class DokterController extends Controller
     {
         $dokters = Dokter::latest()->get();
         $title = 'Dokter';
-        return view('pages.dokter.index', compact('dokters', 'title'));
+        if(request()->is('admin*')) {
+            return view('pages.dokter.index', compact('dokters', 'title'));
+        }
+        
+        return view('pengunjung.index', compact('dokters', 'title'));
     }
 
     public function create()
@@ -130,4 +134,20 @@ class DokterController extends Controller
             unlink(public_path($photoPath));
         }
     }
+
+        public function dokter()
+    {
+        $dokters = \App\Models\Dokter::latest()->get(); 
+        $title = 'dokter';
+        return view('pengunjung.index', compact('datas', 'title'));
+    }
+
+        public function tampilkanDokter()
+    {
+        $dokters = Dokter::all();
+        $title = 'Dokter Kesehatan';
+        
+        return view('pengunjung.dokter', compact('dokters', 'title'));
+    }
+    
 }

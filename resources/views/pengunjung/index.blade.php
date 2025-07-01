@@ -60,6 +60,47 @@
     </div>
     <!-- About End -->
 
+    <!-- Articles Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <p class="d-inline-block border rounded-pill py-1 px-4">Artikel</p>
+            <h1>Artikel Kesehatan Terbaru</h1>
+            <p>Informasi dan tips kesehatan terkini dari tim medis kami</p>
+        </div>
+        <div class="row g-4">
+            @forelse($artikels as $artikel)
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="card article-card h-100">
+                    @if($artikel->gambar)
+                    <img src="{{ asset($artikel->gambar) }}" class="card-img-top" alt="{{ $artikel->judul }}" style="height: 200px; object-fit: cover;">
+                    @else
+                    <img src="{{ asset('home/img/default-article.jpg') }}" class="card-img-top" alt="Default Artikel Image" style="height: 200px; object-fit: cover;">
+                    @endif
+                    <div class="card-body">
+                        <div class="d-flex mb-3">
+                            <small class="me-3"><i class="far fa-user text-primary me-2"></i>{{ $artikel->penulis }}</small>
+                            <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $artikel->created_at->format('d M Y') }}</small>
+                        </div>
+                        <h5 class="card-title">{{ $artikel->judul }}</h5>
+                        <p class="card-text">{{ Str::limit(strip_tags($artikel->isi), 100) }}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <a href="{{ route('artikel', $artikel->id) }}" class="btn btn-link px-0">Baca Selengkapnya <i class="fas fa-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+            </div>
+            @empty
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    Belum ada artikel yang tersedia.
+                </div>
+            </div>
+            @endforelse
+        </div>
+    </div>
+</div>
+<!-- Articles End -->
 
     <!-- Service Start -->
     <div class="container-xxl py-5">
