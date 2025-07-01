@@ -1,6 +1,8 @@
 @extends('layouts.main')
 
 @section('post')
+<div class="container-xxl py-5">
+<div class="container"></div>
 <div class="container py-5">
     <div class="row">
         <div class="col-md-4">

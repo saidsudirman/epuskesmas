@@ -15,31 +15,32 @@ use Carbon\Carbon;
 
 class PengunjungController extends Controller
 {
-    public function index()
-    {
-        $hari = Carbon::today();
-        $besok = Carbon::tomorrow();
-        
-        $pengunjung = Pengunjung::whereDate('tgl_kunjung', $hari)->count();
-        $pengunjungbesok = Pengunjung::whereDate('tgl_kunjung', $besok)->count();
-        $semuapengunjung = Pengunjung::count();
+public function index()
+{
+    $hari = Carbon::today();
+    $besok = Carbon::tomorrow();
+    
+    $pengunjung = Pengunjung::whereDate('tgl_kunjung', $hari)->count();
+    $pengunjungbesok = Pengunjung::whereDate('tgl_kunjung', $besok)->count();
+    $semuapengunjung = Pengunjung::count();
 
-        $artikels = Artikel::latest()->take(3)->get();
-        $dokters = Dokter::latest()->take(4)->get(); // tampilkan 4 dokter
-        $pelayanans = Pelayanan::latest()->take(6)->get();
-        $informasi = Informasi::first();
+    $artikels = Artikel::latest()->take(3)->get();
+    $dokters = Dokter::latest()->take(4)->get();
+    $pelayanans = Pelayanan::latest()->take(6)->get();
+    $informasi = Informasi::first();
 
-        return view('pengunjung.index', [
-            "title" => "Beranda",
-            "pengunjung" => $pengunjung,
-            "pengunjungbesok" => $pengunjungbesok,
-            "semuapengunjung" => $semuapengunjung,
-            "artikels" => $artikels,
-            "pelayanans" => $pelayanans,
-            "informasi" => $informasi,
-            "dokters" => $dokters
-        ]);
-    }
+    return view('pengunjung.index', [
+        "title" => "Beranda",
+        "pengunjung" => $pengunjung,
+        "pengunjungbesok" => $pengunjungbesok,
+        "semuapengunjung" => $semuapengunjung,
+        "artikels" => $artikels,
+        "pelayanans" => $pelayanans,
+        "informasi" => $informasi,
+        "dokters" => $dokters
+    ]);
+}
+
 
     public function create()
     {
@@ -89,15 +90,6 @@ class PengunjungController extends Controller
         ]);
     }
 
-    public function detailDokter($id)
-    {
-        $dokter = Dokter::findOrFail($id);
-        return view('dokters.index', [
-            "title" => "Detail Dokter",
-            "dokter" => $dokter
-        ]);
-    }
-
     public function contact()
     {
         return view('pengunjung.contact', [
@@ -118,7 +110,7 @@ class PengunjungController extends Controller
     {
         $artikels = Artikel::latest()->paginate(6);
 
-        return view('artikel.index', [
+        return view('pengunjung.index', [
             "title" => "Artikel Kesehatan",
             "artikels" => $artikels
         ]);
@@ -132,7 +124,7 @@ class PengunjungController extends Controller
             ->take(3)
             ->get();
 
-        return view('artikel.index', [
+        return view('pengunjung.artikel.index', [
             "title" => $artikel->judul,
             "artikel" => $artikel,
             "artikelTerbaru" => $artikelTerbaru
@@ -143,9 +135,24 @@ class PengunjungController extends Controller
     {
         $dokters = Dokter::latest()->paginate(6);
 
-        return view('dokters.index', [
+        return view('pengunjung.dokter', [
             "title" => "Dokter Kesehatan",
             "dokters" => $dokters
+        ]);
+    }
+
+    public function detailDokter($id)
+    {
+        $dokter = Dokter::findOrFail($id);
+        $dokterTerbaru = Dokter::where('id', '!=', $id)
+            ->latest()
+            ->take(3)
+            ->get();
+
+        return view('dokters.index', [
+            "title" => $dokter->nama,
+            "dokter" => $dokter,
+            "dokterTerbaru" => $dokterTerbaru
         ]);
     }
 }

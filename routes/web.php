@@ -11,28 +11,31 @@ use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\PelayananController;
 
 
-Route::get('/', [PengunjungController::class, 'index']);
+// Halaman utama
+Route::get('/', [PengunjungController::class, 'index'])->name('beranda');
 
-
+// Halaman pendaftaran
 Route::get('/pendaftaran', [PengunjungController::class, 'create'])->name('pengunjung.create');
 Route::post('/pendaftaran', [PengunjungController::class, 'store'])->name('pengunjung.store');
 
-Route::get('/', [PelayananController::class, 'tampilkanLayanan'])->name('layanan');
+// Halaman layanan
 Route::get('/layanan', [PengunjungController::class, 'service'])->name('layanan');
 
+// Artikel
 Route::get('/artikel', [PengunjungController::class, 'tampilkanArtikel'])->name('artikel');
 Route::get('/artikel/{id}', [PengunjungController::class, 'detailArtikel'])->name('artikel.detail');
 
+// Dokter
 Route::get('/dokter', [PengunjungController::class, 'tampilkanDokter'])->name('dokter');
 Route::get('/dokter/{id}', [PengunjungController::class, 'detailDokter'])->name('dokter.detail');
 
-Route::get('/about', [PengunjungController::class, 'about']);
-Route::get('/artikel', [PengunjungController::class, 'tampilkanArtikel'])->name('artikel');
-Route::get('/dokter', [PengunjungController::class, 'tampilkanDokter'])->name('dokter');
 Route::get('/service', [PengunjungController::class, 'service']);
-Route::get('/dokter', [PengunjungController::class, 'dokter']);
-Route::get('/contact', [PengunjungController::class, 'contact']);
 
+// Halaman tambahan
+Route::get('/about', [PengunjungController::class, 'about'])->name('about');
+Route::get('/contact', [PengunjungController::class, 'contact'])->name('contact');
+
+// Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

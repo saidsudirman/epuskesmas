@@ -5,11 +5,11 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">Tenaga Medis</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Tentang Kami</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb text-uppercase mb-0">
-                <li class="breadcrumb-item"><a class="text-white">Home</a></li>
-                <li class="breadcrumb-item text-primary active" aria-current="page">Dokter</li>
+                <li class="breadcrumb-item"><a class="text-white" href="{{ route('artikel') }}">Home</a></li>
+                <li class="breadcrumb-item text-primary active" aria-current="page">About</li>
             </ol>
         </nav>
     </div>
@@ -25,15 +25,17 @@
         </div>
         <div class="row g-4">
             @forelse($dokters as $dokter)
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item position-relative rounded overflow-hidden shadow-sm">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid" src="{{ asset('upload/dokter/' . $dokter->foto) }}" alt="{{ $dokter->nama }}" style="height: 250px; object-fit: cover; width: 100%;">
+            <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ $loop->iteration }}s">
+                <div class="team-item bg-white rounded shadow-sm overflow-hidden position-relative">
+                    <div class="team-img">
+                        <img class="img-fluid w-100" src="{{ asset('upload/dokter/' . $dokter->foto) }}" alt="{{ $dokter->nama }}" style="height: 250px; object-fit: cover;">
                     </div>
-                    <div class="team-text bg-light text-center p-4">
-                        <h5 class="mb-1">{{ $dokter->nama }}</h5>
-                        <p class="text-primary mb-2">{{ $dokter->spesialis }}</p>
-                        <a href="{{ route('dokter.detail', $dokter->id) }}" class="btn btn-sm btn-outline-primary rounded-pill">Baca Selengkapnya</a>
+                    <div class="team-text text-center p-4">
+                        <h5 class="fw-bold mb-1">{{ $dokter->nama }}</h5>
+                        <p class="text-muted mb-2">{{ $dokter->spesialis }}</p>
+                        <a href="{{ route('dokter.detail', $dokter->id) }}" class="btn btn-sm btn-outline-primary rounded-pill px-3 mt-2">
+                            Lihat Detail
+                        </a>
                     </div>
                 </div>
             </div>
@@ -48,5 +50,4 @@
     </div>
 </div>
 <!-- Team End -->
-
 @endsection

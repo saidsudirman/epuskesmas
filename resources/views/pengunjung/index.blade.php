@@ -86,7 +86,7 @@
                         <p class="card-text">{{ Str::limit(strip_tags($artikel->isi), 100) }}</p>
                     </div>
                     <div class="card-footer bg-transparent border-top-0">
-                        <a href="{{ route('artikel', $artikel->id) }}" class="btn btn-link px-0">Baca Selengkapnya <i class="fas fa-arrow-right ms-2"></i></a>
+                        <a href="{{ route('artikel.detail', $artikel->id) }}" class="btn btn-link px-0">Baca Selengkapnya <i class="fas fa-arrow-right ms-2"></i></a>
                     </div>
                 </div>
             </div>
@@ -232,61 +232,40 @@
     <!-- Feature End -->
 
 
-    <!-- Team Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <p class="d-inline-block border rounded-pill py-1 px-4">Dokter</p>
-                <h1>Tenaga Medis Berpengalaman</h1>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item position-relative rounded overflow-hidden">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('home/img/team-1.jpg') }}" alt="">
-                        </div>
-                        <div class="team-text bg-light text-center p-4">
-                            <h5>Fitriani Kusumawati</h5>
-                            <p class="text-primary">Departemen Kesehatan Anak</p>
-                        </div>
+<!-- Team Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <p class="d-inline-block border rounded-pill py-1 px-4">Dokter</p>
+            <h1>Tenaga Medis Berpengalaman</h1>
+        </div>
+        <div class="row g-4">
+            @forelse($dokters as $dokter)
+            <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ $loop->iteration }}s">
+                <div class="team-item bg-white rounded shadow-sm overflow-hidden position-relative">
+                    <div class="team-img">
+                        <img class="img-fluid w-100" src="{{ asset('upload/dokter/' . $dokter->foto) }}" alt="{{ $dokter->nama }}" style="height: 250px; object-fit: cover;">
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item position-relative rounded overflow-hidden">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('home/img/team-2.jpg') }}" alt="">
-                        </div>
-                        <div class="team-text bg-light text-center p-4">
-                            <h5>Wijaya Pranata</h5>
-                            <p class="text-primary">Departemen Kesehatan Jiwa</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item position-relative rounded overflow-hidden">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('home/img/team-3.jpg') }}" alt="">
-                        </div>
-                        <div class="team-text bg-light text-center p-4">
-                            <h5>Dina Ayuningtyas</h5>
-                            <p class="text-primary">Departemen Urologi</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item position-relative rounded overflow-hidden">
-                        <div class="overflow-hidden">
-                            <img class="img-fluid" src="{{ asset('home/img/team-4.jpg') }}" alt="">
-                        </div>
-                        <div class="team-text bg-light text-center p-4">
-                            <h5>Ahmad Setiawan</h5>
-                            <p class="text-primary">Departemen Radiologi</p>
-                        </div>
+                    <div class="team-text text-center p-4">
+                        <h5 class="fw-bold mb-1">{{ $dokter->nama }}</h5>
+                        <p class="text-muted mb-2">{{ $dokter->spesialis }}</p>
+                        <a href="{{ route('dokter.detail', $dokter->id) }}" class="btn btn-sm btn-outline-primary rounded-pill px-3 mt-2">
+                            Lihat Detail
+                        </a>
                     </div>
                 </div>
             </div>
+            @empty
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    Belum ada data dokter yang tersedia.
+                </div>
+            </div>
+            @endforelse
         </div>
     </div>
-    <!-- Team End -->
+</div>
+<!-- Team End -->
+
 
 @endsection<!-- End #section -->

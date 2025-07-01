@@ -13,12 +13,10 @@ class DokterController extends Controller
     {
         $dokters = Dokter::latest()->get();
         $title = 'Dokter';
-        if(request()->is('admin*')) {
-            return view('pages.dokter.index', compact('dokters', 'title'));
-        }
-        
-        return view('pengunjung.index', compact('dokters', 'title'));
+
+        return view('pages.dokter.index', compact('dokters', 'title'));
     }
+
 
     public function create()
     {

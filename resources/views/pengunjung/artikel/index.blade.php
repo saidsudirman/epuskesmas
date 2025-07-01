@@ -10,7 +10,7 @@
             <p class="d-inline-block border rounded-pill py-1 px-4">Detail Artikel</p>
             <h1 class="mb-3">{{ $artikel->judul }}</h1>
             <p class="mb-0">Diterbitkan oleh <strong>{{ $artikel->penulis }}</strong> pada {{ $artikel->created_at->format('d M Y') }}</p>
-        </div>
+        </div>  
 
         <!-- Artikel Konten -->
         <div class="row justify-content-center">
