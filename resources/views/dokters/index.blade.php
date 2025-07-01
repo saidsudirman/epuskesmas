@@ -19,9 +19,11 @@
         <p><strong>NIP:</strong> {{ $dokter->nip }}</p>
         <p><strong>Email:</strong> {{ $dokter->email }}</p>
         <p><strong>Konsultasi Di Whatsapp:</strong> 
-            <a href="{{ $dokter->whatsapp }}" target="_blank" class="btn btn-success btn-sm">
-                <i class="fab fa-whatsapp"></i> Chat
-            </a>
+                    <td>
+                        <a href="https://wa.me/{{ $dokter->whatsapp }}" target="_blank" class="btn btn-success btn-sm">
+                            <i class="fab fa-whatsapp"></i> Chat
+                        </a>
+                    </td>
         </p>
         <p><strong>Jam Kerja:</strong> {{ $dokter->jam_kerja }}</p>
     </div>
