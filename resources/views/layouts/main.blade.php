@@ -56,10 +56,15 @@
                     <small>+012 345 6789</small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center">
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href=""><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href="https://facebook.com/puskesmas.kalosi" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href="https://youtube.com/%40UPTPUSKESMASKALOSI" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href="https://instagram.com/upt_puskesmaskalosi" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -100,11 +105,16 @@
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Kec. Kalosi Enrekang</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
+                    <div class="h-100 d-inline-flex align-items-center">
+                        <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href="https://facebook.com/puskesmas.kalosi" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href="https://youtube.com/%40UPTPUSKESMASKALOSI" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href="https://instagram.com/upt_puskesmaskalosi" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -120,15 +130,7 @@
                     <a class="btn btn-link" href="{{ url('/about') }}">Tentang Kami</a>
                     <a class="btn btn-link" href="{{ url('/service') }}">Layanan Kami</a>
                     <a class="btn btn-link" href="{{ url('/contact') }}">Hubungi Kami</a>
-                    <a class="btn btn-link" href="{{ url('/pendaftaran') }}">Pendaftaran Pasien</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Newsletter</h5>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                    </div>
+                    <a class="btn btn-link" href="{{ url('/dokter') }}">Dokter Kami</a>
                 </div>
             </div>
         </div>

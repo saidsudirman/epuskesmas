@@ -23,15 +23,21 @@
             <p class="d-inline-block border rounded-pill py-1 px-4">Dokter</p>
             <h1>Tenaga Medis Berpengalaman</h1>
         </div>
+
         <div class="row g-4">
             @forelse($dokters as $dokter)
             <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ $loop->iteration }}s">
-                <div class="team-item bg-white rounded shadow-sm overflow-hidden position-relative">
+                <div class="team-item bg-white rounded shadow-sm overflow-hidden position-relative h-100"
+                     style="min-height: 420px; display: flex; flex-direction: column; justify-content: space-between;">
+
+                    {{-- Foto Dokter --}}
                     @if($dokter->foto)
-                    <img src="{{ asset($dokter->foto) }}" class="card-img-top" alt="{{ $dokter->nama }}" style="height: 200px; object-fit: cover;">
+                        <img src="{{ asset($dokter->foto) }}" class="img-fluid w-100" alt="{{ $dokter->nama }}" style="height: 300px; object-fit: cover;">
                     @else
-                    <img class="img-fluid" src="{{ asset('upload/dokter/' . $dokter->foto) }}" class="card-img-top" alt="Default dokter Image" style="height: 200px; object-fit: cover;">
+                        <img src="{{ asset('upload/dokter/default.jpg') }}" class="img-fluid w-100" alt="Default dokter" style="height: 300px; object-fit: cover;">
                     @endif
+
+                    {{-- Informasi --}}
                     <div class="team-text text-center p-4">
                         <h5 class="fw-bold mb-1">{{ $dokter->nama }}</h5>
                         <p class="text-muted mb-2">{{ $dokter->spesialis }}</p>
@@ -52,4 +58,5 @@
     </div>
 </div>
 <!-- Team End -->
+
 @endsection
