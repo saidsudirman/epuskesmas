@@ -28,7 +28,7 @@
                         </div>
                         <div class="ms-4">
                             <p class="mb-2">Alamat</p>
-                            <h5 class="mb-0">Wonosobo, Jawa Tengah</h5>
+                            <h5 class="mb-0">Kalosi, Enrekang</h5>
                         </div>
                     </div>
                 </div>
