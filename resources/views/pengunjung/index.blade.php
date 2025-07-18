@@ -251,8 +251,9 @@
                     <div class="team-text text-center p-4">
                         <h5 class="fw-bold mb-1">{{ $dokter->nama }}</h5>
                         <p class="text-muted mb-2">{{ $dokter->spesialis }}</p>
-                        <a href="{{ route('dokter.detail', $dokter->id) }}" class="btn btn-sm btn-outline-primary rounded-pill px-3 mt-2">
-                            Lihat Detail
+                        <a href="{{ route('userlogin', ['redirect' => route('dokter.detail', ['id' => $dokter->id])]) }}" 
+                        class="btn btn-sm btn-outline-primary rounded-pill px-3 mt-2">
+                        Lihat Detail
                         </a>
                     </div>
                 </div>

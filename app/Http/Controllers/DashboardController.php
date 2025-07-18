@@ -38,7 +38,9 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Implement your store logic here
+
+        return response()->json(['message' => 'Not implemented'], 200);
     }
 
     /**
@@ -49,7 +51,8 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        //
+        // You can customize this response as needed
+        return response()->json(['message' => 'Not implemented'], 200);
     }
 
     /**

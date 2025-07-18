@@ -24,28 +24,28 @@
                 <p class="d-inline-block border rounded-pill py-1 px-4">Layanan Kami</p>
                 <h1>Solusi Kesehatan Anda</h1>
             </div>
-<div class="row g-4">
-    @foreach($pelayanans as $pelayanan)
-    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ $loop->iteration * 0.2 }}s">
-        <div class="service-item bg-light rounded h-100 p-5 position-relative overflow-hidden">
-            <!-- Decorative element -->
-            <div class="position-absolute top-0 end-0 bg-primary opacity-10" style="width: 150px; height: 150px; border-radius: 50%; transform: translate(50px, -50px);"></div>
-            
-            <!-- Service content -->
-            <div class="position-relative">
-                <h4 class="mb-3 text-dark">{{ $pelayanan->nama_layanan }}</h4>
-                <p class="mb-3 text-muted">{{ $pelayanan->deskripsi }}</p>
-                <h5> Waktu Layanan </h5>
-                <h6 class="mb-3 text-muted">{{ $pelayanan->waktu_layanan }}</h6>
-                <!-- Improved Service time display -->
-            </div>
-            
-            <!-- Hover effect -->
-            <div class="service-hover-overlay"></div>
-        </div> 
-    </div>
-    @endforeach
-</div>
+                <div class="row g-4">
+                    @foreach($pelayanans as $pelayanan)
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="{{ $loop->iteration * 0.2 }}s">
+                        <div class="service-item bg-light rounded h-100 p-5 position-relative overflow-hidden">
+                            <!-- Decorative element -->
+                            <div class="position-absolute top-0 end-0 bg-primary opacity-10" style="width: 150px; height: 150px; border-radius: 50%; transform: translate(50px, -50px);"></div>
+                            
+                            <!-- Service content -->
+                            <div class="position-relative">
+                                <h4 class="mb-3 text-dark">{{ $pelayanan->nama_layanan }}</h4>
+                                <p class="mb-3 text-muted">{{ $pelayanan->deskripsi }}</p>
+                                <h5> Waktu Layanan </h5>
+                                <h6 class="mb-3 text-muted">{{ $pelayanan->waktu_layanan }}</h6>
+                                <!-- Improved Service time display -->
+                            </div>
+                            
+                            <!-- Hover effect -->
+                            <div class="service-hover-overlay"></div>
+                        </div> 
+                    </div>
+                    @endforeach
+                </div>
 
 <style>
     .service-item {

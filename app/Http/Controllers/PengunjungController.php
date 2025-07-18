@@ -148,7 +148,6 @@ public function index()
             ->latest()
             ->take(3)
             ->get();
-
         return view('dokters.index', [
             "title" => $dokter->nama,
             "dokter" => $dokter,

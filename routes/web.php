@@ -8,8 +8,9 @@ use App\Http\Controllers\DokterController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\Users1LoginController;
 use App\Http\Controllers\PelayananController;
-
+use App\Http\Controllers\RegisterController;
 
 // Halaman utama
 Route::get('/', [PengunjungController::class, 'index'])->name('beranda');
@@ -27,7 +28,12 @@ Route::get('/artikel/{id}', [PengunjungController::class, 'detailArtikel'])->nam
 
 // Dokter
 Route::get('/dokter', [PengunjungController::class, 'tampilkanDokter'])->name('dokter');
-Route::get('/dokter/{id}', [PengunjungController::class, 'detailDokter'])->name('dokter.detail');
+
+Route::middleware('auth')->group(function () {
+Route::get('/dokter/{id}/detail', [PengunjungController::class, 'detailDokter'])
+    ->middleware('auth:users1')
+    ->name('dokter.detail');
+});
 
 Route::get('/service', [PengunjungController::class, 'service']);
 
@@ -39,6 +45,13 @@ Route::get('/contact', [PengunjungController::class, 'contact'])->name('contact'
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/user/login', [Users1LoginController::class, 'userindex'])->name('userlogin');
+Route::post('/user/login', [Users1LoginController::class, 'userlogin'])->name('userlogin.post');
+Route::get('/user/logout', [Users1LoginController::class, 'userlogout'])->name('userlogout');
 
 Route::middleware(['auth'])->group(function () {
     
