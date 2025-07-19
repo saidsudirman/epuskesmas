@@ -10,26 +10,38 @@ class LoginController extends Controller
     public function index()
     {
         return view('login.index', [
-        "title" => "Login"]);
+        "title" => "login"]);
     }
 
     public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+{
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('/admin/dashboard');
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        
+        $user = Auth::user(); // Get the authenticated user once
+        
+        // Use a switch statement for multiple roles
+        switch ($user->role) {
+            case 'admin':
+                return redirect()->route('dashboard');
+            case 'dokter':
+                return redirect()->route('chat.dokter');
+            default:
+                // Handle other roles or no role
+                Auth::logout(); // Log out if role is not recognized
+                return back()->withErrors(['email' => 'Unauthorized access.']);
         }
-
-        return back()->withErrors([
-            'email' => 'Email atau password salah.'
-        ]);
     }
+
+    return back()->withErrors([
+        'email' => 'The provided credentials do not match our records.',
+    ])->onlyInput('email');
+}
 
         public function logout(Request $request)
     {

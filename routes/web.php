@@ -8,6 +8,7 @@ use App\Http\Controllers\DokterController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\Users1LoginController;
 use App\Http\Controllers\PelayananController;
 use App\Http\Controllers\RegisterController;
@@ -33,6 +34,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/dokter/{id}/detail', [PengunjungController::class, 'detailDokter'])
     ->middleware('auth:users1')
     ->name('dokter.detail');
+    Route::get('/chat/{dokter_id}/{user_id}', [ChatController::class, 'dokterChatDetail'])->name('chat.detail');
+    Route::get('/chat', [ChatController::class, 'index'])->name('chat.dokter');
 });
 
 Route::get('/service', [PengunjungController::class, 'service']);
@@ -43,7 +46,7 @@ Route::get('/contact', [PengunjungController::class, 'contact'])->name('contact'
 
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+Route::post('/login', [LoginController::class, 'login'])->name('login.admin');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');

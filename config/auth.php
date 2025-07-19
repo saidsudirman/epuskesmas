@@ -45,6 +45,11 @@ return [
             'driver' => 'session',
             'provider' => 'users1',
         ],
+
+        'dokter' => [
+        'driver' => 'session',
+        'provider' => 'dokters',
+        ],
     ],
 
 
@@ -71,9 +76,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'users1' => [
+    'users1' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Users1::class,
+    ],
+
+        'dokters' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Users1::class,
+            'model' => App\Models\Dokter::class,
         ],
     ],
 

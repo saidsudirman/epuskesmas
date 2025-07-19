@@ -21,7 +21,7 @@ class Users1LoginController extends Controller
         ]);
     }
 
-        public function userlogin(Request $request)
+    public function userlogin(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
@@ -33,7 +33,7 @@ class Users1LoginController extends Controller
 
             // Redirect ke halaman yang disimpan di URL
             if ($request->filled('redirect')) {
-                return redirect($request->input('redirect')); // <== ini penting
+                return redirect($request->input('redirect'));
             }
 
             // Jika tidak ada redirect, redirect default

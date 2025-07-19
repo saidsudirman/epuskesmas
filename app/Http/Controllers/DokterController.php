@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChatMessage;
 use App\Models\Dokter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -146,6 +147,13 @@ class DokterController extends Controller
         $title = 'Dokter Kesehatan';
         
         return view('pengunjung.dokter', compact('dokters', 'title'));
+    }
+
+    public function chat()
+    {
+        return view('dokter.chat', [
+            'chats' => ChatMessage::where('dokter_id', auth()->id())->get()
+        ]);
     }
     
 }

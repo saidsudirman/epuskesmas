@@ -59,7 +59,7 @@
                             <h3>Sign In</h3>
                         </div>
 
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('login.admin') }}">
                             @csrf
 
                             <div class="form-floating">
@@ -76,6 +76,16 @@
                                 @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                            </div>
+                                <div>
+                                    <label for="role">Pilih Role</label>
+                                    <select name="role" id="role" class="form-select @error('role') is-invalid @enderror" required>
+                                        <option value="dokter">Dokter</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                    @error('role')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                             </div>
                             <button class="w-100 btn btn-lg btn-primary" type="submit">LOGIN</button>
                         </form>
