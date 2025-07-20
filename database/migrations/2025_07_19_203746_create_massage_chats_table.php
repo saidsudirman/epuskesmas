@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('massage_chats', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id');
             $table->string('dokter_id');
-            $table->string('sender');
+            $table->enum('sender', ['user', 'bot', 'dokter']);;
             $table->text('message');
             $table->timestamps();
         });

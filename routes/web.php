@@ -30,13 +30,33 @@ Route::get('/artikel/{id}', [PengunjungController::class, 'detailArtikel'])->nam
 // Dokter
 Route::get('/dokter', [PengunjungController::class, 'tampilkanDokter'])->name('dokter');
 
-Route::middleware('auth')->group(function () {
-Route::get('/dokter/{id}/detail', [PengunjungController::class, 'detailDokter'])
-    ->middleware('auth:users1')
-    ->name('dokter.detail');
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/dokter/{id}/detail', [PengunjungController::class, 'detailDokter'])
+        ->middleware('auth:users1') // middleware guard tambahan
+        ->name('dokter.detail');
+
     Route::get('/chat/{dokter_id}/{user_id}', [ChatController::class, 'dokterChatDetail'])->name('chat.detail');
+    Route::post('/chat/send/{dokter_id}', [ChatController::class, 'send'])->name('chat.send');
+
+    Route::get('/chat-dokter/{dokter_id}/{user_id}', [ChatController::class, 'userChatDetail'])->name('chat.dokter.detail');
+    Route::post('/chat/send-by-dokter/{dokter_id}/{user_id}', [ChatController::class, 'sendByDokter'])->name('chat.dokter.send');
+
+    Route::post('/chat/reply', [ChatController::class, 'replyByDokter'])->name('chat.reply');
+
     Route::get('/chat', [ChatController::class, 'index'])->name('chat.dokter');
+
+    Route::post('/chat/{dokter_id}/{user_id}', [ChatController::class, 'send'])->name('chat.withUser');
+
+
+    Route::get('/dokter', [DokterController::class, 'index'])->name('dokter.index');
+    Route::get('/dokter/create', [DokterController::class, 'create'])->name('dokter.create');
+    Route::post('/dokter', [DokterController::class, 'store'])->name('dokter.store');
+    Route::get('/dokter/{id}/edit', [DokterController::class, 'edit'])->name('dokter.edit');
+    Route::put('/dokter/{id}', [DokterController::class, 'update'])->name('dokter.update');
+    Route::delete('/dokter/{id}', [DokterController::class, 'destroy'])->name('dokter.destroy');
 });
+
 
 Route::get('/service', [PengunjungController::class, 'service']);
 

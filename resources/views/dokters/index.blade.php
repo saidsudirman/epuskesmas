@@ -26,9 +26,10 @@
                     <p><strong>Email:</strong> {{ $dokter->email }}</p>
                     <p><strong>Jam Kerja:</strong> {{ $dokter->jam_kerja }}</p>
                     <p><strong>Konsultasi via WhatsApp:</strong></p>
-                    <a href="https://wa.me/{{ $dokter->whatsapp }}" target="_blank" class="btn btn-success btn-sm">
-                        <i class="fab fa-whatsapp"></i> Chat Sekarang
-                    </a>
+                        <a href="{{ route('chat.detail', ['dokter_id' => $dokter->id, 'user_id' => auth('users1')->id()]) }}" class="btn btn-success btn-sm">
+                            <i class="fas fa-comments"></i> Chat Sekarang
+                        </a>
+
                 </div>
             </div>
 

@@ -5,7 +5,7 @@
     <h3>{{ $title }}</h3>
     <div class="list-group mt-3">
         @forelse ($chats as $chat)
-            <a href="{{ route('chat.dokter', ['dokter_id' => $chat->dokter_id, 'user_id' => $chat->user_id]) }}"
+            <a href="{{ route('chat.dokter.detail', ['dokter_id' => $chat->dokter_id, 'user_id' => $chat->user_id]) }}"
                class="list-group-item list-group-item-action">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
