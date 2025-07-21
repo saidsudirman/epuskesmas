@@ -31,7 +31,7 @@
 
         {{-- Register Form --}}
         <div class="tab-pane fade" id="register-tab-pane" role="tabpanel">
-            <form method="POST" action="{{ url('/register') }}">
+            <form action="{{ route('regis') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label>Nama</label>

@@ -70,7 +70,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.admin');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
+Route::post('/register', [RegisterController::class, 'store'])->name('regis');
 
 Route::get('/user/login', [Users1LoginController::class, 'userindex'])->name('userlogin');
 Route::post('/user/login', [Users1LoginController::class, 'userlogin'])->name('userlogin.post');
