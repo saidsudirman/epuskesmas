@@ -29,14 +29,8 @@ class Users1LoginController extends Controller
         ]);
 
         if (Auth::guard('users1')->attempt($credentials)) {
+
             $request->session()->regenerate();
-
-            // Redirect ke halaman yang disimpan di URL
-            if ($request->filled('redirect')) {
-                return redirect($request->input('redirect'));
-            }
-
-            // Jika tidak ada redirect, redirect default
             return redirect()->intended('/dokter/{id}/detail');
         }
 

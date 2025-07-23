@@ -11,7 +11,7 @@
                     <div class="p-2 rounded 
                         {{ $msg->sender === 'dokter' ? 'bg-primary text-white' : 
                            ($msg->sender === 'user' ? 'bg-success text-white' : 'bg-secondary text-white') }}">
-                        <strong>
+                        <strong>    
                             {{
                                 $msg->sender === 'dokter' ? ($dokter->nama ?? 'User') :
                                 ($msg->sender === 'user' ? ($user->name ?? 'Pasien') : 'AI')

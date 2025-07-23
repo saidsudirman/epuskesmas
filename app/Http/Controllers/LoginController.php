@@ -23,9 +23,8 @@ class LoginController extends Controller
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
         
-        $user = Auth::user(); // Get the authenticated user once
+        $user = Auth::user(); 
         
-        // Use a switch statement for multiple roles
         switch ($user->role) {
             case 'admin':
                 return redirect()->route('dashboard');

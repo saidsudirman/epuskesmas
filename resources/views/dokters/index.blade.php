@@ -25,7 +25,7 @@
                     <p><strong>NIP:</strong> {{ $dokter->nip }}</p>
                     <p><strong>Email:</strong> {{ $dokter->email }}</p>
                     <p><strong>Jam Kerja:</strong> {{ $dokter->jam_kerja }}</p>
-                    <p><strong>Konsultasi via WhatsApp:</strong></p>
+                    <p><strong>Konsultasi:</strong></p>
                         <a href="{{ route('chat.detail', ['dokter_id' => $dokter->id, 'user_id' => auth('users1')->id()]) }}" class="btn btn-success btn-sm">
                             <i class="fas fa-comments"></i> Chat Sekarang
                         </a>

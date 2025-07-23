@@ -119,13 +119,17 @@ public function index()
     public function detailArtikel($id)
     {
         $artikel = Artikel::findOrFail($id);
+
+        // Ensure $artikel is a single model instance and has 'judul' attribute
+        $judulArtikel = isset($artikel->judul) ? $artikel->judul : 'Detail Artikel';
+
         $artikelTerbaru = Artikel::where('id', '!=', $id)
             ->latest()
             ->take(3)
             ->get();
 
         return view('pengunjung.artikel.index', [
-            "title" => $artikel->judul,
+            "title" => $judulArtikel,
             "artikel" => $artikel,
             "artikelTerbaru" => $artikelTerbaru
         ]);
@@ -144,12 +148,16 @@ public function index()
     public function detailDokter($id)
     {
         $dokter = Dokter::findOrFail($id);
+
+        // Ensure $dokter is a single model instance and has 'nama' attribute
+        $namaDokter = isset($dokter->nama) ? $dokter->nama : 'Detail Dokter';
+
         $dokterTerbaru = Dokter::where('id', '!=', $id)
             ->latest()
             ->take(3)
             ->get();
         return view('dokters.index', [
-            "title" => $dokter->nama,
+            "title" => $namaDokter,
             "dokter" => $dokter,
             "dokterTerbaru" => $dokterTerbaru
         ]);

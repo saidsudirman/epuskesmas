@@ -22,9 +22,9 @@ class RegisterController extends Controller
         ]);
 
         Users1::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
+            'name'     => $request->input('name'),
+            'email'    => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
         ]);
 
         return redirect()->route('userlogin.post')->with('success', 'Registrasi berhasil! Silakan login.');

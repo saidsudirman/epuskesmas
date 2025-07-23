@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>E-PUSKESMAS | {{ $title }}</title>
+    <title>Puskesmas Kalosi | {{ $title }}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!-- Favicon -->

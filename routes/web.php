@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\PengunjungController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
@@ -33,7 +34,7 @@ Route::get('/dokter', [PengunjungController::class, 'tampilkanDokter'])->name('d
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/dokter/{id}/detail', [PengunjungController::class, 'detailDokter'])
-        ->middleware('auth:users1') // middleware guard tambahan
+        ->middleware('auth:users1') 
         ->name('dokter.detail');
 
     Route::get('/chat/{dokter_id}/{user_id}', [ChatController::class, 'dokterChatDetail'])->name('chat.detail');
@@ -75,6 +76,18 @@ Route::post('/register', [RegisterController::class, 'store'])->name('regis');
 Route::get('/user/login', [Users1LoginController::class, 'userindex'])->name('userlogin');
 Route::post('/user/login', [Users1LoginController::class, 'userlogin'])->name('userlogin.post');
 Route::get('/user/logout', [Users1LoginController::class, 'userlogout'])->name('userlogout');
+
+
+Route::get('/test-email', function () {
+    Mail::raw('Ini adalah email percobaan dari Laravel!', function ($message) {
+        $message->from(config('mail.from.address'), config('mail.from.name')) 
+                ->to('hello@example.com') 
+                ->subject('Pesan Dari Dokter');
+    });
+
+    return 'Email berhasil dikirim!';
+});
+
 
 Route::middleware(['auth'])->group(function () {
     
