@@ -9,7 +9,7 @@
                class="list-group-item list-group-item-action">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <strong>{{ $chat->user->name ?? 'Pengguna Tidak Dikenal' }}</strong>
+                        <strong>{{ $chat->users1 ?? 'Pasien' }}</strong>
                         <p class="mb-0 text-muted">{{ Str::limit($chat->message, 50) }}</p>
                     </div>
                     <small>{{ $chat->created_at->diffForHumans() }}</small>
