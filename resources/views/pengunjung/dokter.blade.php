@@ -23,26 +23,21 @@
             <p class="d-inline-block border rounded-pill py-1 px-4">Dokter</p>
             <h1>Tenaga Medis Berpengalaman</h1>
         </div>
-
         <div class="row g-4">
             @forelse($dokters as $dokter)
             <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ $loop->iteration }}s">
-                <div class="team-item bg-white rounded shadow-sm overflow-hidden position-relative h-100"
-                     style="min-height: 420px; display: flex; flex-direction: column; justify-content: space-between;">
-
-                    {{-- Foto Dokter --}}
+                <div class="team-item bg-white rounded shadow-sm overflow-hidden position-relative">
                     @if($dokter->foto)
                         <img src="{{ asset($dokter->foto) }}" class="img-fluid w-100" alt="{{ $dokter->nama }}" style="height: 300px; object-fit: cover;">
                     @else
                         <img src="{{ asset('upload/dokter/default.jpg') }}" class="img-fluid w-100" alt="Default dokter" style="height: 300px; object-fit: cover;">
                     @endif
-
-                    {{-- Informasi --}}
                     <div class="team-text text-center p-4">
                         <h5 class="fw-bold mb-1">{{ $dokter->nama }}</h5>
                         <p class="text-muted mb-2">{{ $dokter->spesialis }}</p>
-                        <a href="{{ route('dokter.detail', $dokter->id) }}" class="btn btn-sm btn-outline-primary rounded-pill px-3 mt-2">
-                            Lihat Detail
+                        <a href="{{ route('userlogin', ['redirect' => route('dokter.detail', ['id' => $dokter->id])]) }}" 
+                        class="btn btn-sm btn-outline-primary rounded-pill px-3 mt-2">
+                        Lihat Detail
                         </a>
                     </div>
                 </div>

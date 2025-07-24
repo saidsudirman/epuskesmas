@@ -31,23 +31,22 @@ Route::get('/artikel/{id}', [PengunjungController::class, 'detailArtikel'])->nam
 // Dokter
 Route::get('/dokter', [PengunjungController::class, 'tampilkanDokter'])->name('dokter');
 
-Route::middleware(['auth'])->group(function () {
-
-    Route::get('/dokter/{id}/detail', [PengunjungController::class, 'detailDokter'])
+Route::get('/dokter/{id}/detail', [PengunjungController::class, 'detailDokter'])
         ->middleware('auth:users1') 
         ->name('dokter.detail');
+Route::get('/chat/{dokter_id}/{user_id}', [ChatController::class, 'dokterChatDetail'])->name('chat.detail');
+Route::post('/chat/send/{dokter_id}', [ChatController::class, 'send'])->name('chat.send');
+Route::get('/chat-dokter/{dokter_id}/{user_id}', [ChatController::class, 'userChatDetail'])->name('chat.dokter.detail');
+Route::post('/chat/send-by-dokter/{dokter_id}/{user_id}', [ChatController::class, 'sendByDokter'])->name('chat.dokter.send');
 
-    Route::get('/chat/{dokter_id}/{user_id}', [ChatController::class, 'dokterChatDetail'])->name('chat.detail');
-    Route::post('/chat/send/{dokter_id}', [ChatController::class, 'send'])->name('chat.send');
+Route::post('/chat/reply', [ChatController::class, 'replyByDokter'])->name('chat.reply');
+Route::post('/chat/{dokter_id}/{user_id}', [ChatController::class, 'send'])->name('chat.withUser');
 
-    Route::get('/chat-dokter/{dokter_id}/{user_id}', [ChatController::class, 'userChatDetail'])->name('chat.dokter.detail');
-    Route::post('/chat/send-by-dokter/{dokter_id}/{user_id}', [ChatController::class, 'sendByDokter'])->name('chat.dokter.send');
+Route::middleware(['auth'])->group(function () {
 
-    Route::post('/chat/reply', [ChatController::class, 'replyByDokter'])->name('chat.reply');
+
 
     Route::get('/chat', [ChatController::class, 'index'])->name('chat.dokter');
-
-    Route::post('/chat/{dokter_id}/{user_id}', [ChatController::class, 'send'])->name('chat.withUser');
 
 
     Route::get('/dokter', [DokterController::class, 'index'])->name('dokter.index');
@@ -64,6 +63,7 @@ Route::get('/service', [PengunjungController::class, 'service']);
 // Halaman tambahan
 Route::get('/about', [PengunjungController::class, 'about'])->name('about');
 Route::get('/contact', [PengunjungController::class, 'contact'])->name('contact');
+Route::get('/dokter', [PengunjungController::class, 'dokter'])->name('dokter');
 
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');

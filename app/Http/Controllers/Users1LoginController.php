@@ -29,8 +29,7 @@ class Users1LoginController extends Controller
         ]);
 
         if (Auth::guard('users1')->attempt($credentials)) {
-
-            $request->session()->regenerate();
+                $request->session()->regenerate();
             return redirect()->intended('/dokter/{id}/detail');
         }
 
